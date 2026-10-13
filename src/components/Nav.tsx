@@ -54,7 +54,9 @@ export default function Nav() {
           : 'var(--color-matcha-deep)';
       el.style.backdropFilter = past ? 'blur(10px)' : 'none';
       el.style.boxShadow = past ? 'var(--shadow-nav)' : 'none';
-      if (mark.current) mark.current.style.opacity = past ? '1' : '0';
+      // The handoff hides the wordmark over the hero; the doorway hero never
+      // says the name, so it stays as the masthead the whole way down.
+      if (mark.current) mark.current.style.opacity = '1';
     },
     { ignoreReducedMotion: true },
   );
@@ -91,7 +93,7 @@ export default function Nav() {
           ref={mark}
           href="#top"
           aria-label="ikigai — back to top"
-          className="t-wordmark-nav col-start-2 opacity-0 no-underline transition-opacity duration-400 motion-reduce:transition-none"
+          className="t-wordmark-nav col-start-2 no-underline transition-opacity duration-400 motion-reduce:transition-none"
         >
           ikigai
         </a>

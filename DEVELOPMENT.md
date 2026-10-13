@@ -47,15 +47,18 @@ straight to the node. `prefers-reduced-motion: reduce` shows every end state and
    otherwise it is two viewports of scroll in which nothing happens. The blurb's text is still in
    the DOM for screen readers, but a sighted visitor with reduced motion does not see it — worth a
    decision from the client.
-3. **Mobile nav.** Undesigned in the handoff. Built minimal, as asked: under 640px the links
+3. **Hero wordmark.** The handoff hides the nav wordmark while the hero is in view. The doorway
+   hero never says the name anywhere else, so it stays visible as the masthead — `matcha-deep` on
+   paper, `cream` once the photo fills.
+4. **Mobile nav.** Undesigned in the handoff. Built minimal, as asked: under 640px the links
    collapse into a `Menu` button and a cream sheet of serif links.
-4. **Keyboard access**, not specified: `open ↗` in a file window's title bar is a real button, list
+5. **Keyboard access**, not specified: `open ↗` in a file window's title bar is a real button, list
    cards are buttons, the modal moves focus to `close ×` and restores it, and Escape closes the
    modal and the mobile sheet.
-5. **`desktop` / `all events`.** Below 760px of container width the `desktop` segment is disabled
+6. **`desktop` / `all events`.** Below 760px of container width the `desktop` segment is disabled
    rather than silently ignored.
-6. **Coming up** has no on/off prop; it renders nothing when `UPCOMING` is empty.
-7. **Grain.** The prototype's optional grain overlay is off by default and absent from the spec,
+7. **Coming up** has no on/off prop; it renders nothing when `UPCOMING` is empty.
+8. **Grain.** The prototype's optional grain overlay is off by default and absent from the spec,
    so it was not ported.
-8. **Shippori Mincho.** Google's metadata declares no `japanese` subset, and a latin-only request
+9. **Shippori Mincho.** Google's metadata declares no `japanese` subset, and a latin-only request
    drops the kana. The family is fetched unsubsetted with `preload: false`.
