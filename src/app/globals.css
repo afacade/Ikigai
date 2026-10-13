@@ -1,0 +1,441 @@
+@import 'tailwindcss';
+
+/* ---------------------------------------------------------------- tokens
+   Mirrors the ikigai design system. Nothing below is a new decision: every
+   value comes from the handoff. */
+@theme {
+  --color-cream: #f7f1e6;
+  --color-paper: #efe6d6;
+  --color-beige: #eee5d5;
+  --color-ink: #2a1e16;
+  --color-matcha-deep: #2f4a2a;
+  --color-matcha: #4f6b33;
+  --color-matcha-hover: #3f6136;
+  --color-matcha-text-2: #4a5e42;
+  --color-matcha-light: #c9d6a0;
+  --color-wood: #6b4630;
+  --color-wood-2: #5a4232;
+  --color-terracotta: #6b3b2a;
+  --color-terracotta-board: #5e3324;
+  --color-terracotta-card: #5a3122;
+  --color-espresso: #3d2b1f;
+  --color-folder-body: #d9c29c;
+  --color-folder-tab: #c2a77d;
+  --color-folder-body-active: #c9d6a0;
+  --color-folder-tab-active: #a9bd78;
+  --color-window-chrome: #e4d7c1;
+  --color-window-body: #f6f1e7;
+  --color-on-dark-100: #f2e9da;
+  --color-on-dark-200: #e8d9c3;
+  --color-on-dark-300: #e3c9a8;
+  --color-on-dark-400: #d8cbb6;
+  --color-modal-text: #3b2a1f;
+  --color-field-placeholder: #8a7360;
+
+  --font-serif: var(--font-instrument-serif), Georgia, serif;
+  --font-sans: var(--font-archivo), system-ui, sans-serif;
+  --font-jp: var(--font-shippori-mincho), Georgia, serif;
+  --font-mono: var(--font-ibm-plex-mono), ui-monospace, monospace;
+}
+
+:root {
+  --hairline-cream: rgba(47, 74, 42, 0.22);
+  --hairline-cream-soft: rgba(47, 74, 42, 0.18);
+  --hairline-nav: rgba(47, 74, 42, 0.12);
+  --hairline-board: rgba(242, 233, 218, 0.12);
+  --hairline-espresso: rgba(238, 229, 213, 0.5);
+  --nav-scrolled: rgba(247, 241, 230, 0.94);
+  --scrim: rgba(42, 30, 22, 0.55);
+  --play-badge: rgba(246, 241, 231, 0.92);
+
+  --shadow-window: 0 20px 40px -18px rgba(0, 0, 0, 0.65);
+  --shadow-window-light: 0 18px 40px -18px rgba(42, 30, 22, 0.45);
+  --shadow-window-host: 0 24px 50px -20px rgba(0, 0, 0, 0.6);
+  --shadow-modal: 0 40px 80px -30px rgba(0, 0, 0, 0.7);
+  --shadow-folder: 0 8px 16px -8px rgba(0, 0, 0, 0.5);
+  --shadow-nav: 0 1px 0 rgba(47, 74, 42, 0.12);
+
+  --section-y: clamp(80px, 10vw, 140px);
+  --section-x: clamp(20px, 5vw, 72px);
+  --section-x-narrow: clamp(20px, 4vw, 56px);
+  --column-x: clamp(24px, 6vw, 96px);
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    margin: 0;
+    background: var(--color-beige);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+  }
+  ::selection {
+    background: var(--color-matcha-light);
+    color: var(--color-ink);
+  }
+  :focus-visible {
+    outline: 2px solid currentColor;
+    outline-offset: 3px;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+  }
+}
+
+/* ------------------------------------------------------------ type scale
+   The display sizes ship as clamp(); the design system records the desktop
+   end of each range. */
+@layer components {
+  .t-hero {
+    font-family: var(--font-serif);
+    font-size: clamp(76px, 10vw, 132px);
+    line-height: 0.92;
+  }
+  .t-late {
+    font-family: var(--font-serif);
+    font-size: clamp(44px, 6vw, 96px);
+    line-height: 1.02;
+    text-shadow: 0 2px 30px rgba(20, 14, 10, 0.45);
+  }
+  .t-h2,
+  .t-h2-drinks,
+  .t-h2-moments,
+  .t-h2-visit,
+  .t-h2-upcoming {
+    font-family: var(--font-serif);
+    font-weight: 400;
+    margin: 0;
+  }
+  .t-h2 {
+    font-size: clamp(40px, 5.6vw, 88px);
+    line-height: 1.02;
+    text-wrap: balance;
+  }
+  .t-h2-drinks {
+    font-size: clamp(48px, 5.6vw, 84px);
+    line-height: 0.98;
+  }
+  .t-h2-moments {
+    font-size: clamp(52px, 7vw, 104px);
+    line-height: 0.92;
+  }
+  .t-h2-visit {
+    font-size: clamp(46px, 5.2vw, 80px);
+    line-height: 1;
+  }
+  .t-h2-upcoming {
+    font-size: clamp(48px, 6vw, 88px);
+    line-height: 0.95;
+  }
+  .t-statement {
+    font-family: var(--font-serif);
+    font-size: clamp(34px, 4.4vw, 66px);
+    line-height: 1.08;
+  }
+  .t-wordmark-xl {
+    font-family: var(--font-serif);
+    font-size: clamp(48px, 5vw, 76px);
+    line-height: 1;
+  }
+  .t-wordmark-md {
+    font-family: var(--font-serif);
+    font-size: 40px;
+    line-height: 1;
+  }
+  .t-wordmark-nav {
+    font-family: var(--font-serif);
+    font-size: 28px;
+    line-height: 1;
+    letter-spacing: 0;
+    text-transform: none;
+  }
+  .t-item-name {
+    font-family: var(--font-serif);
+    font-size: clamp(28px, 2.6vw, 38px);
+    line-height: 1.1;
+  }
+  .t-event-title {
+    font-family: var(--font-serif);
+    font-weight: 400;
+    font-size: 44px;
+    line-height: 0.95;
+    margin: 0;
+  }
+  .t-card-title {
+    font-family: var(--font-serif);
+    font-weight: 400;
+    font-size: 28px;
+    line-height: 1.05;
+    margin: 0;
+  }
+  .t-upcoming-title {
+    font-family: var(--font-serif);
+    font-size: clamp(26px, 2.6vw, 36px);
+    line-height: 1.05;
+  }
+  .t-editorial {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-size: 28px;
+    line-height: 1.2;
+  }
+  .t-aside {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-size: 26px;
+  }
+  .t-body-lg {
+    font-size: 18px;
+    line-height: 1.6;
+    text-wrap: pretty;
+  }
+  .t-body {
+    font-size: 17px;
+    line-height: 1.55;
+    text-wrap: pretty;
+  }
+  .t-body-visit {
+    font-size: 17px;
+    line-height: 1.65;
+  }
+  .t-body-sm {
+    font-size: 15px;
+    line-height: 1.55;
+  }
+  .t-caption {
+    font-size: 14px;
+    line-height: 1.5;
+  }
+  .t-fine {
+    font-size: 13px;
+    line-height: 1.5;
+  }
+  .t-price {
+    font-size: 14px;
+    letter-spacing: 0.06em;
+  }
+  .t-nav-link {
+    font-size: 11px;
+    letter-spacing: 0.26em;
+    text-transform: uppercase;
+  }
+  .t-eyebrow {
+    font-size: 11px;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+    font-weight: 600;
+  }
+  .t-button-label {
+    font-size: 11px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+  }
+  .t-footer-label {
+    font-size: 11px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+  }
+  .t-cta-label {
+    font-size: 16px;
+    font-weight: 600;
+  }
+  .t-numeral-day {
+    font-weight: 800;
+    font-stretch: 120%;
+    font-size: clamp(30px, 3.4vw, 46px);
+    line-height: 0.9;
+    letter-spacing: -0.02em;
+  }
+  .t-headline-bring {
+    font-weight: 900;
+    font-stretch: 125%;
+    text-transform: uppercase;
+    font-size: clamp(46px, 6.6vw, 96px);
+    line-height: 0.88;
+    letter-spacing: -0.03em;
+    margin: 0;
+  }
+  .t-jp-vertical {
+    font-family: var(--font-jp);
+    font-size: clamp(28px, 3vw, 40px);
+    letter-spacing: 0.3em;
+    writing-mode: vertical-rl;
+  }
+  .t-jp-inline {
+    font-family: var(--font-jp);
+    font-size: 17px;
+    letter-spacing: 0.4em;
+  }
+  .t-mono-eyebrow {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+  }
+  .t-mono-meta {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+  .t-mono-hint {
+    font-family: var(--font-mono);
+    font-size: 11px;
+  }
+  .t-mono-file {
+    font-family: var(--font-mono);
+    font-size: 10.5px;
+  }
+  .t-mono-modal {
+    font-family: var(--font-mono);
+    font-size: 12px;
+  }
+
+  /* ------------------------------------------------------------- pills */
+  .pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    border: 0;
+    border-radius: 999px;
+    font: inherit;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background 0.2s, box-shadow 0.2s, color 0.2s;
+  }
+  .pill-filled {
+    padding: 17px 40px;
+    background: var(--color-matcha-deep);
+    color: var(--color-cream);
+  }
+  .pill-filled:hover {
+    background: var(--color-matcha-hover);
+  }
+  .pill-outline {
+    padding: 16px 40px;
+    color: var(--color-matcha-deep);
+    box-shadow: inset 0 0 0 1px var(--hairline-cream);
+  }
+  .pill-outline:hover {
+    box-shadow: inset 0 0 0 1px var(--color-matcha-deep);
+  }
+  .pill-cta {
+    padding: 16px 28px;
+    background: var(--color-matcha-light);
+    color: var(--color-ink);
+  }
+  .pill-cta:hover {
+    background: var(--color-beige);
+  }
+  .pill-dark {
+    padding: 12px 22px;
+    background: var(--color-ink);
+    color: var(--color-window-body);
+    font-size: 14px;
+  }
+  .pill-dark:hover {
+    background: var(--color-matcha);
+  }
+  .pill-outline-ink {
+    padding: 10px 20px;
+    font-size: 14px;
+    white-space: nowrap;
+    color: var(--color-ink);
+    box-shadow: inset 0 0 0 1.5px var(--color-ink);
+  }
+  .pill-outline-ink:hover {
+    background: var(--color-matcha-light);
+  }
+  .pill-tag {
+    padding: 7px 14px;
+    font-size: 14px;
+    color: var(--color-beige);
+    box-shadow: inset 0 0 0 1px var(--hairline-espresso);
+  }
+  .pill-chip {
+    padding: 8px 16px;
+    font-size: 14px;
+    color: var(--color-on-dark-100);
+    box-shadow: inset 0 0 0 1.5px var(--color-on-dark-100);
+  }
+  .pill-chip[aria-pressed='true'] {
+    background: var(--color-on-dark-100);
+    color: var(--color-ink);
+  }
+
+  /* --------------------------------------------------------- treatments */
+  .feathered {
+    -webkit-mask-image: radial-gradient(circle at center, #000 56%, transparent 70%);
+    mask-image: radial-gradient(circle at center, #000 56%, transparent 70%);
+  }
+  .section-pad {
+    padding: var(--section-y) var(--section-x);
+  }
+}
+
+/* --------------------------------------------------------------- motion
+   Start states for the scrubbed reveal; the scroll pass writes the rest.
+   With reduced motion the end state is all there is. */
+[data-reveal] {
+  opacity: 0;
+  transform: translateY(36px);
+}
+[data-speed] {
+  will-change: transform;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  [data-reveal] {
+    opacity: 1;
+    transform: none;
+  }
+  [data-speed] {
+    will-change: auto;
+    transform: none !important;
+  }
+}
+
+/* The hero's reduced-motion end state: the full-bleed photograph with the late
+   line, no arch animation, and no 280vh of scroll with nothing happening in it. */
+@media (prefers-reduced-motion: reduce) {
+  .hero {
+    height: 100vh;
+  }
+  .hero-img {
+    clip-path: inset(0) !important;
+  }
+  .hero-fade {
+    opacity: 0 !important;
+  }
+  .hero-late {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
+
+/* Prose for the imprint and privacy pages. */
+.legal h2 {
+  font-family: var(--font-serif);
+  font-weight: 400;
+  font-size: 28px;
+  line-height: 1.1;
+  margin: 40px 0 0;
+}
+.legal h2:first-child {
+  margin-top: 0;
+}
+.legal p {
+  font-size: 16px;
+  line-height: 1.65;
+  margin: 12px 0 0;
+  max-width: 62ch;
+}
+.legal a {
+  color: var(--color-matcha);
+  text-underline-offset: 3px;
+}

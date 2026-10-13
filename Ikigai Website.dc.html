@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,300..900&family=Instrument+Serif:ital@0;1&family=Shippori+Mincho:wght@400;500&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<script src="./image-slot.js"></script>
+<style>
+html{scroll-behavior:smooth}
+body{margin:0;background:#EEE5D5;color:#2A1E16;font-family:'Archivo',sans-serif;-webkit-font-smoothing:antialiased}
+a{color:#2A1E16}
+a:hover{color:#4F6B33}
+input::placeholder{color:#8A7360}
+body[data-grain="on"]::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:9999;opacity:.2;mix-blend-mode:multiply;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='180' height='180'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 .3  0 0 0 0 .2  0 0 0 0 .1  0 0 0 .9 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>")}
+</style>
+</helmet>
+
+<nav data-nav="" style="position:fixed;top:0;left:0;right:0;z-index:200;display:grid;grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);align-items:center;gap:20px;padding:20px clamp(20px,4vw,56px);color:#F7F1E6;transition:background .4s,color .4s,box-shadow .4s;font-size:11px;letter-spacing:.26em;text-transform:uppercase">
+  <div style="display:flex;flex-wrap:wrap;gap:8px 32px"><a href="#drinks" style="color:inherit;text-decoration:none">Drinks</a><a href="#moments" style="color:inherit;text-decoration:none">Moments</a></div>
+  <a href="#top" data-navmark="" style="color:inherit;text-decoration:none;font-family:'Instrument Serif',serif;font-size:28px;letter-spacing:0;text-transform:none;transition:opacity .4s">ikigai</a>
+  <div style="display:flex;flex-wrap:wrap;justify-content:flex-end;gap:8px 32px"><a href="#host" style="color:inherit;text-decoration:none">Host with us</a><a href="#visit" style="color:inherit;text-decoration:none">Visit</a></div>
+</nav>
+
+<div style="position:fixed;left:16px;bottom:16px;z-index:250;display:flex;align-items:center;gap:4px;padding:5px;border-radius:999px;background:#2A1E16;color:#F7F1E6;font-size:11px;letter-spacing:.08em;box-shadow:0 10px 24px -10px rgba(0,0,0,.5)">
+  <span style="padding:0 8px 0 10px;opacity:.75">hero</span>
+  <sc-for list="{{ heroTabs }}" as="h" hint-placeholder-count="2">
+    <button onClick="{{ h.pick }}" style="font:inherit;cursor:pointer;border:0;padding:6px 12px;border-radius:999px;background:{{ h.bg }};color:{{ h.fg }}">{{ h.label }}</button>
+  </sc-for>
+</div>
+
+<sc-if value="{{ heroBowl }}" hint-placeholder-val="{{ true }}">
+<header id="top" data-hero="bowl" data-screen-label="Hero — The bowl" style="position:relative;height:280vh;background:#F7F1E6;color:#2F4A2A">
+  <div style="position:sticky;top:0;height:100vh;overflow:hidden">
+    <div data-hero-img="" style="position:absolute;inset:0;clip-path:circle(230px at 50% 50%)"><image-slot id="h2a-bowl" src="https://images.pexels.com/photos/8329642/pexels-photo-8329642.jpeg?auto=compress&cs=tinysrgb&w=1600" shape="rect" placeholder="matcha bowl from above — foam swirl"></image-slot></div>
+    <div style="position:absolute;left:0;right:0;top:50%;transform:translateY(-50%);display:flex;justify-content:space-between;padding:0 clamp(20px,5vw,64px);font-family:'Instrument Serif',serif;font-size:clamp(90px,15vw,220px);line-height:1;pointer-events:none"><span data-iki="" style="display:inline-block">iki</span><span data-gai="" style="display:inline-block;font-style:italic">gai</span></div>
+    <div data-fade="" style="position:absolute;left:clamp(20px,5vw,64px);bottom:48px;max-width:300px;font-size:15px;line-height:1.55;pointer-events:none">Matcha whisked to order, and a long table for whoever walks in.</div>
+    <div data-fade="" style="position:absolute;right:clamp(20px,5vw,64px);bottom:48px;text-align:right;font-size:11px;letter-spacing:.3em;text-transform:uppercase;line-height:2;pointer-events:none">Kronenstraße 66<br>Berlin Mitte</div>
+    <div data-late="" style="position:absolute;left:clamp(20px,5vw,64px);bottom:clamp(40px,9vh,90px);opacity:0;color:#F7F1E6;font-family:'Instrument Serif',serif;font-size:clamp(44px,6vw,96px);line-height:1.02;text-shadow:0 2px 30px rgba(20,14,10,.45);pointer-events:none">A third place.<br><span style="font-style:italic">Stay a while.</span></div>
+  </div>
+</header>
+</sc-if>
+
+<sc-if value="{{ heroDoor }}" hint-placeholder-val="{{ false }}">
+<header id="top" data-hero="door" data-screen-label="Hero — The doorway" style="position:relative;height:280vh;background:#EFE6D6;color:#2A1E16">
+  <div style="position:sticky;top:0;height:100vh;overflow:hidden">
+    <div data-hero-img="" style="position:absolute;inset:0;clip-path:inset(28% calc(50% - 220px) 0 calc(50% - 220px) round 220px 220px 0 0)"><image-slot id="h2d-door" src="https://images.pexels.com/photos/28947779/pexels-photo-28947779.jpeg?auto=compress&cs=tinysrgb&w=1600" shape="rect" placeholder="view through the entrance — warm interior"></image-slot></div>
+    <div data-fade="" style="position:absolute;left:clamp(20px,5vw,64px);top:clamp(170px,32vh,280px);font-family:'Instrument Serif',serif;font-size:clamp(76px,10vw,132px);line-height:.92;pointer-events:none">come<br><span style="font-style:italic;color:#4F6B33">in.</span></div>
+    <div data-fade="" style="position:absolute;right:clamp(20px,5vw,72px);top:clamp(110px,18vh,150px);writing-mode:vertical-rl;font-family:'Shippori Mincho',serif;font-size:clamp(28px,3vw,40px);letter-spacing:.3em;color:#6B4630;pointer-events:none">いらっしゃい</div>
+    <div data-fade="" style="position:absolute;right:clamp(20px,5vw,64px);bottom:56px;max-width:270px;font-size:15px;line-height:1.55;pointer-events:none">A matcha tea bar and a third place in Berlin Mitte. Run club on Sundays, chess on Thursdays, a seat for you any day.</div>
+    <div data-late="" style="position:absolute;left:clamp(20px,5vw,64px);bottom:clamp(40px,9vh,90px);opacity:0;color:#F7F1E6;font-family:'Instrument Serif',serif;font-size:clamp(44px,6vw,96px);line-height:1.02;text-shadow:0 2px 30px rgba(20,14,10,.45);pointer-events:none">Welcome in.<br><span style="font-style:italic">Stay a while.</span></div>
+  </div>
+</header>
+</sc-if>
+
+<section data-screen-label="Intro" style="position:relative;background:#F7F1E6;color:#2F4A2A;min-height:140vh;padding:clamp(110px,14vw,180px) clamp(20px,5vw,72px);overflow:hidden;box-sizing:border-box">
+  <div data-reveal="" style="position:relative;z-index:1;max-width:1000px;font-family:'Instrument Serif',serif;font-size:clamp(34px,4.4vw,66px);line-height:1.08">Ceremonial matcha, whisked to order<br>Run clubs, chess nights &amp; workshops<br><span style="font-style:italic">A third place in Berlin Mitte</span></div>
+  <div style="position:absolute;left:56%;top:30%;width:clamp(170px,26vw,400px);aspect-ratio:1/1"><div data-speed=".22" style="position:absolute;inset:0;will-change:transform;-webkit-mask-image:radial-gradient(circle at center,#000 56%,transparent 70%);mask-image:radial-gradient(circle at center,#000 56%,transparent 70%)"><image-slot id="v2-c1" src="https://images.pexels.com/photos/32695045/pexels-photo-32695045.jpeg?auto=compress&cs=tinysrgb&w=1600" shape="rect" placeholder="matcha, macro"></image-slot></div></div>
+  <div style="position:absolute;left:26%;top:46%;width:clamp(130px,19vw,300px);aspect-ratio:1/1"><div data-speed=".4" style="position:absolute;inset:0;will-change:transform;-webkit-mask-image:radial-gradient(circle at center,#000 56%,transparent 70%);mask-image:radial-gradient(circle at center,#000 56%,transparent 70%)"><image-slot id="v2-c2" src="https://images.pexels.com/photos/7144920/pexels-photo-7144920.jpeg?auto=compress&cs=tinysrgb&w=1600" shape="rect" placeholder="whisk"></image-slot></div></div>
+  <div style="position:absolute;left:5%;top:64%;width:clamp(150px,22vw,340px);aspect-ratio:1/1"><div data-speed=".12" style="position:absolute;inset:0;will-change:transform;-webkit-mask-image:radial-gradient(circle at center,#000 56%,transparent 70%);mask-image:radial-gradient(circle at center,#000 56%,transparent 70%)"><image-slot id="v2-c3" src="https://images.pexels.com/photos/17789703/pexels-photo-17789703.jpeg?auto=compress&cs=tinysrgb&w=1600" shape="rect" placeholder="run club"></image-slot></div></div>
+  <div style="position:absolute;left:43%;top:70%;width:clamp(130px,18vw,290px);aspect-ratio:1/1"><div data-speed=".3" style="position:absolute;inset:0;will-change:transform;-webkit-mask-image:radial-gradient(circle at center,#000 56%,transparent 70%);mask-image:radial-gradient(circle at center,#000 56%,transparent 70%)"><image-slot id="v2-c4" src="https://images.pexels.com/photos/34164459/pexels-photo-34164459.jpeg?auto=compress&cs=tinysrgb&w=1600" shape="rect" placeholder="wood table"></image-slot></div></div>
+  <div style="position:absolute;left:74%;top:62%;width:clamp(150px,22vw,340px);aspect-ratio:1/1"><div data-speed=".18" style="position:absolute;inset:0;will-change:transform;-webkit-mask-image:radial-gradient(circle at center,#000 56%,transparent 70%);mask-image:radial-gradient(circle at center,#000 56%,transparent 70%)"><image-slot id="v2-c5" src="https://images.pexels.com/photos/6817705/pexels-photo-6817705.jpeg?auto=compress&cs=tinysrgb&w=1600" shape="rect" placeholder="chess pieces"></image-slot></div></div>
+</section>
+
+<section data-screen-label="What we do" style="background:#F7F1E6;color:#2F4A2A;padding:clamp(80px,12vw,170px) 20px;text-align:center">
+  <div data-reveal="">
+    <div style="font-family:'Instrument Serif',serif;font-size:clamp(48px,5vw,76px);line-height:1">ikigai</div>
+    <div style="font-family:'Shippori Mincho',serif;font-size:17px;letter-spacing:.4em;margin-top:8px">生き甲斐</div>
+  </div>
+  <div data-reveal="" style="margin-top:56px;font-size:11px;letter-spacing:.32em;text-transform:uppercase;font-weight:600">A reason for being</div>
+  <h2 data-reveal="" style="margin:24px auto 0;max-width:1100px;font-family:'Instrument Serif',serif;font-weight:400;font-size:clamp(40px,5.6vw,88px);line-height:1.02;text-wrap:balance">Come for the matcha. Stay for the people.</h2>
+  <p data-reveal="" style="margin:28px auto 0;max-width:560px;font-size:18px;line-height:1.6;text-wrap:pretty">Stone-ground matcha, a long wooden table and a calendar full of things to do together. Whoever you are, there's a seat for you.</p>
+  <div data-reveal="" style="display:flex;justify-content:center;flex-wrap:wrap;gap:14px;margin-top:40px">
+    <a href="#drinks" style="padding:17px 40px;border-radius:999px;background:#2F4A2A;color:#F7F1E6;text-decoration:none;font-size:11px;letter-spacing:.3em;text-transform:uppercase" style-hover="background:#3F6136;color:#F7F1E6">Menu</a>
+    <a href="#moments" style="padding:16px 40px;border-radius:999px;border:1px solid rgba(47,74,42,.4);color:#2F4A2A;text-decoration:none;font-size:11px;letter-spacing:.3em;text-transform:uppercase" style-hover="border-color:#2F4A2A;color:#2F4A2A">Events</a>
+  </div>
+</section>
+
+<section id="drinks" data-screen-label="Drinks" style="background:#F7F1E6;color:#2F4A2A;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr))">
+  <div style="position:relative;min-height:100vh"><div style="position:sticky;top:0;height:100vh;overflow:hidden"><image-slot id="v2-drinks" src="https://images.pexels.com/photos/32972501/pexels-photo-32972501.jpeg?auto=compress&cs=tinysrgb&w=1600" shape="rect" placeholder="matcha being poured over milk, close up"></image-slot></div></div>
+  <div style="padding:clamp(80px,10vw,150px) clamp(24px,6vw,96px)">
+    <div data-reveal="" style="font-size:11px;letter-spacing:.32em;text-transform:uppercase;font-weight:600">What's in the cup</div>
+    <h2 data-reveal="" style="margin:20px 0 0;font-family:'Instrument Serif',serif;font-weight:400;font-size:clamp(48px,5.6vw,84px);line-height:.98">Short menu.<br><span style="font-style:italic">Done properly.</span></h2>
+    <div style="margin-top:56px">
+      <sc-for list="{{ drinks }}" as="d" hint-placeholder-count="4">
+        <div data-reveal="" style="padding:26px 0;border-top:1px solid rgba(47,74,42,.22)">
+          <div style="display:flex;justify-content:space-between;align-items:baseline;gap:16px"><span style="font-family:'Instrument Serif',serif;font-size:clamp(28px,2.6vw,38px);line-height:1.1">{{ d.name }}</span><span style="font-size:14px;letter-spacing:.06em">{{ d.price }}</span></div>
+          <p style="margin:8px 0 0;font-size:15px;line-height:1.55;color:#4A5E42">{{ d.note }}</p>
+        </div>
+      </sc-for>
+    </div>
+    <div data-reveal="" style="margin-top:36px;font-family:'Instrument Serif',serif;font-style:italic;font-size:26px">Full menu &amp; pastries in store.</div>
+  </div>
+</section>
+
+<section id="moments" data-screen-label="Moments — event portfolio" style="background:#6B3B2A;color:#F2E9DA;padding:clamp(80px,10vw,130px) clamp(16px,4vw,56px)">
+  <div style="max-width:1400px;margin:0 auto">
+    <div style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:end;gap:24px;margin-bottom:36px">
+      <div>
+        <div style="font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:#E3C9A8">the archive · {{ count }} files</div>
+        <h2 style="margin:12px 0 0;font-family:'Instrument Serif',serif;font-weight:400;font-size:clamp(52px,7vw,104px);line-height:.92">Things we've <span style="font-style:italic">hosted</span></h2>
+      </div>
+      <div style="display:flex;gap:4px;padding:4px;border-radius:999px;border:1.5px solid #F2E9DA">
+        <button onClick="{{ setDesktop }}" style="font:inherit;font-size:14px;cursor:pointer;border:0;padding:8px 16px;border-radius:999px;background:{{ deskBg }};color:{{ deskFg }}">desktop</button>
+        <button onClick="{{ setList }}" style="font:inherit;font-size:14px;cursor:pointer;border:0;padding:8px 16px;border-radius:999px;background:{{ listBg }};color:{{ listFg }}">all events</button>
+      </div>
+    </div>
+
+    <div ref="{{ boardWrapRef }}">
+    <sc-if value="{{ isDesktop }}" hint-placeholder-val="{{ true }}">
+      <div ref="{{ boardRef }}" style="position:relative;height:860px;border-radius:14px;background:#5E3324;box-shadow:inset 0 0 0 1px rgba(242,233,218,.12);overflow:hidden">
+        <sc-for list="{{ folders }}" as="f" hint-placeholder-count="5">
+          <button onClick="{{ f.pick }}" style="all:unset;cursor:pointer;position:absolute;left:2%;top:{{ f.top }};width:110px;text-align:center;opacity:{{ f.opacity }};transition:opacity .2s">
+            <div style="position:relative;width:76px;height:58px;margin:0 auto">
+              <div style="position:absolute;left:0;top:0;width:34px;height:12px;background:{{ f.tab }};border-radius:5px 5px 0 0"></div>
+              <div style="position:absolute;left:0;right:0;top:8px;bottom:0;background:{{ f.body }};border-radius:3px 6px 6px 6px;box-shadow:0 8px 16px -8px rgba(0,0,0,.5)"></div>
+            </div>
+            <div style="margin-top:8px;font-size:13px;line-height:1.2;color:#F2E9DA;text-shadow:0 1px 6px rgba(0,0,0,.4)">{{ f.name }}</div>
+          </button>
+        </sc-for>
+        <sc-for list="{{ boardFiles }}" as="e" hint-placeholder-count="0">
+          <div onPointerDown="{{ e.onFront }}" style="position:absolute;left:{{ e.left }};top:{{ e.top }};width:clamp(150px,14.5vw,210px);z-index:{{ e.z }};transform:rotate({{ e.rot }});opacity:{{ e.opacity }};transition:opacity .25s;background:#F6F1E7;border-radius:8px;overflow:hidden;box-shadow:0 20px 40px -18px rgba(0,0,0,.65)">
+            <div onPointerDown="{{ e.onDown }}" style="display:flex;justify-content:space-between;align-items:center;gap:6px;padding:6px 9px;background:#E4D7C1;cursor:grab;touch-action:none;user-select:none;color:#2A1E16">
+              <span style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ e.file }}</span>
+              <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;flex:none">open ↗</span>
+            </div>
+            <div style="position:relative;aspect-ratio:{{ e.ratio }}">
+              <image-slot id="{{ e.slot }}" src="{{ e.src }}" shape="rect" placeholder="{{ e.ph }}"></image-slot>
+              <sc-if value="{{ e.isVideo }}" hint-placeholder-val="{{ false }}">
+                <div style="position:absolute;right:8px;bottom:8px;width:34px;height:34px;border-radius:50%;background:rgba(246,241,231,.92);display:flex;align-items:center;justify-content:center;pointer-events:none"><span style="width:0;height:0;margin-left:3px;border-left:10px solid #2A1E16;border-top:6px solid transparent;border-bottom:6px solid transparent"></span></div>
+              </sc-if>
+            </div>
+          </div>
+        </sc-for>
+        <div style="position:absolute;right:18px;bottom:14px;font-family:'IBM Plex Mono',monospace;font-size:11px;color:#E3C9A8;pointer-events:none">drag by the bar · click the bar to open · folders filter</div>
+      </div>
+    </sc-if>
+
+    <sc-if value="{{ isList }}" hint-placeholder-val="{{ false }}">
+      <div>
+        <div style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:32px">
+          <sc-for list="{{ chips }}" as="c" hint-placeholder-count="6">
+            <button onClick="{{ c.pick }}" style="font:inherit;font-size:14px;cursor:pointer;padding:8px 16px;border-radius:999px;border:1.5px solid #F2E9DA;background:{{ c.bg }};color:{{ c.fg }}">{{ c.name }}</button>
+          </sc-for>
+        </div>
+        <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,250px),1fr));gap:40px 20px">
+          <sc-for list="{{ listEvents }}" as="e" hint-placeholder-count="8">
+            <article onClick="{{ e.open }}" style="cursor:pointer">
+              <div style="position:relative;aspect-ratio:4/5;background:#5A3122">
+                <image-slot id="{{ e.slot }}" src="{{ e.src }}" shape="rect" placeholder="{{ e.ph }}"></image-slot>
+                <div style="position:absolute;top:10px;left:10px;pointer-events:none;font-family:'IBM Plex Mono',monospace;font-size:11px;padding:4px 9px;border-radius:999px;background:#F2E9DA;color:#2A1E16">{{ e.media }}</div>
+              </div>
+              <div style="display:flex;justify-content:space-between;gap:10px;margin-top:14px;font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:#E3C9A8"><span>{{ e.cat }}</span><span>{{ e.date }}</span></div>
+              <h3 style="margin:6px 0 0;font-family:'Instrument Serif',serif;font-weight:400;font-size:28px;line-height:1.05">{{ e.title }}</h3>
+              <p style="margin:6px 0 0;font-size:14px;line-height:1.5;color:#E8D9C3">{{ e.line }}</p>
+            </article>
+          </sc-for>
+        </div>
+      </div>
+    </sc-if>
+    </div>
+  </div>
+</section>
+
+<sc-if value="{{ hasOpen }}" hint-placeholder-val="{{ false }}">
+  <div onClick="{{ close }}" style="position:fixed;inset:0;z-index:300;background:rgba(42,30,22,.55);backdrop-filter:blur(4px);display:flex;align-items:center;justify-content:center;padding:20px">
+    <div onClick="{{ stop }}" style="width:min(820px,100%);max-height:92vh;overflow:auto;background:#F6F1E7;color:#2A1E16;border-radius:12px;box-shadow:0 40px 80px -30px rgba(0,0,0,.7)">
+      <div style="display:flex;justify-content:space-between;align-items:center;padding:9px 12px;background:#E4D7C1;font-family:'IBM Plex Mono',monospace;font-size:12px">
+        <span>{{ open.file }}</span>
+        <button onClick="{{ close }}" style="font:inherit;cursor:pointer;border:0;background:#2A1E16;color:#F6F1E7;border-radius:999px;padding:4px 12px">close ×</button>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr))">
+        <div style="position:relative;aspect-ratio:4/5"><image-slot id="{{ open.slot }}" src="{{ open.src }}" shape="rect" placeholder="{{ open.ph }}"></image-slot></div>
+        <div style="padding:28px;display:flex;flex-direction:column;gap:14px">
+          <div style="display:flex;justify-content:space-between;font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:#6B4630"><span>{{ open.cat }}</span><span>{{ open.date }}</span></div>
+          <h3 style="margin:0;font-family:'Instrument Serif',serif;font-weight:400;font-size:44px;line-height:.95">{{ open.title }}</h3>
+          <p style="margin:0;font-size:16px;line-height:1.55;color:#3B2A1F">{{ open.line }}</p>
+          <div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:4px">
+            <span style="padding:6px 12px;border-radius:999px;background:#E4D7C1;font-size:13px">{{ open.guests }}</span>
+            <span style="padding:6px 12px;border-radius:999px;background:#E4D7C1;font-size:13px">{{ open.media }}</span>
+          </div>
+          <a href="#host" onClick="{{ close }}" style="margin-top:auto;align-self:flex-start;padding:12px 22px;border-radius:999px;background:#2A1E16;color:#F6F1E7;text-decoration:none;font-size:14px" style-hover="background:#4F6B33;color:#F6F1E7">plan something like this →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</sc-if>
+
+<sc-if value="{{ showUpcoming }}" hint-placeholder-val="{{ true }}">
+<section data-screen-label="Upcoming" style="background:#EEE5D5;padding:clamp(80px,10vw,130px) clamp(20px,5vw,72px)">
+  <div style="max-width:1100px;margin:0 auto">
+    <h2 style="margin:0 0 40px;font-family:'Instrument Serif',serif;font-weight:400;font-size:clamp(48px,6vw,88px);line-height:.95">Coming <span style="font-style:italic;color:#4F6B33">up</span></h2>
+    <sc-for list="{{ upcoming }}" as="u" hint-placeholder-count="3">
+      <div style="display:grid;grid-template-columns:minmax(80px,130px) minmax(0,1fr) auto;gap:16px 28px;align-items:center;padding:26px 0;border-top:1.5px solid #2A1E16">
+        <div style="font-weight:800;font-stretch:120%;font-size:clamp(30px,3.4vw,46px);line-height:.9;letter-spacing:-.02em">{{ u.day }}<div style="font-family:'IBM Plex Mono',monospace;font-weight:400;font-stretch:100%;font-size:12px;letter-spacing:.1em;margin-top:6px;color:#6B4630">{{ u.mon }}</div></div>
+        <div>
+          <div style="font-family:'Instrument Serif',serif;font-size:clamp(26px,2.6vw,36px);line-height:1.05">{{ u.title }}</div>
+          <div style="margin-top:6px;font-size:14px;color:#5A4232">{{ u.meta }}</div>
+        </div>
+        <a href="https://www.instagram.com/ikigai.teabar/" style="padding:10px 20px;border-radius:999px;border:1.5px solid #2A1E16;font-size:14px;white-space:nowrap" style-hover="background:#C9D6A0;color:#2A1E16">save a spot</a>
+      </div>
+    </sc-for>
+  </div>
+</section>
+</sc-if>
+
+<section id="host" data-screen-label="Host with us" style="background:#3D2B1F;color:#EEE5D5;padding:clamp(80px,10vw,140px) clamp(20px,5vw,72px)">
+  <div style="max-width:1280px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr));gap:56px;align-items:center">
+    <div>
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:#C9D6A0">for teams, brands & bakeries</div>
+      <h2 style="margin:16px 0 0;font-weight:900;font-stretch:125%;text-transform:uppercase;font-size:clamp(46px,6.6vw,96px);line-height:.88;letter-spacing:-.03em">Bring<br>your<br>people.</h2>
+      <p style="margin:28px 0 0;max-width:420px;font-size:17px;line-height:1.55;color:#D8CBB6;text-wrap:pretty">Book a private matcha workshop, take over the space for a pop-up, or cook up a collab with us. We bring the whisks, the playlist and the warm welcome.</p>
+      <div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:28px">
+        <span style="padding:7px 14px;border-radius:999px;border:1px solid rgba(238,229,213,.5);font-size:14px">team workshops</span>
+        <span style="padding:7px 14px;border-radius:999px;border:1px solid rgba(238,229,213,.5);font-size:14px">brand pop-ups</span>
+        <span style="padding:7px 14px;border-radius:999px;border:1px solid rgba(238,229,213,.5);font-size:14px">food collabs</span>
+        <span style="padding:7px 14px;border-radius:999px;border:1px solid rgba(238,229,213,.5);font-size:14px">private gatherings</span>
+      </div>
+      <a href="mailto:hello@ikigai-teabar.de" style="display:inline-flex;align-items:center;gap:12px;margin-top:36px;padding:16px 28px;border-radius:999px;background:#C9D6A0;color:#2A1E16;text-decoration:none;font-weight:600;font-size:16px" style-hover="background:#EEE5D5;color:#2A1E16">send an inquiry →</a>
+    </div>
+    <div style="position:relative;aspect-ratio:1/1;max-width:560px;width:100%;justify-self:center">
+      <div style="position:absolute;left:0;top:6%;width:62%;transform:rotate(-4deg);background:#F6F1E7;border-radius:10px;overflow:hidden;box-shadow:0 24px 50px -20px rgba(0,0,0,.6)">
+        <div style="padding:7px 10px;background:#E4D7C1;font-family:'IBM Plex Mono',monospace;font-size:11px;color:#2A1E16">team_workshop.mov</div>
+        <div style="position:relative;aspect-ratio:4/5"><image-slot id="host-1" src="https://images.pexels.com/photos/5946632/pexels-photo-5946632.jpeg?auto=compress&cs=tinysrgb&w=1600" shape="rect" placeholder="team workshop — video still"></image-slot></div>
+      </div>
+      <div style="position:absolute;right:0;bottom:4%;width:56%;transform:rotate(5deg);background:#F6F1E7;border-radius:10px;overflow:hidden;box-shadow:0 24px 50px -20px rgba(0,0,0,.6)">
+        <div style="padding:7px 10px;background:#E4D7C1;font-family:'IBM Plex Mono',monospace;font-size:11px;color:#2A1E16">popup_setup.jpg</div>
+        <div style="position:relative;aspect-ratio:1/1"><image-slot id="host-2" src="https://images.pexels.com/photos/8890516/pexels-photo-8890516.jpeg?auto=compress&cs=tinysrgb&w=1600" shape="rect" placeholder="brand pop-up setup"></image-slot></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer id="visit" data-screen-label="Visit" style="background:#F7F1E6;color:#2F4A2A">
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr))">
+    <div style="position:relative;min-height:80vh;overflow:hidden"><div style="position:absolute;inset:0"><div data-speed=".12" style="position:absolute;top:-12%;bottom:-12%;left:0;right:0;will-change:transform"><image-slot id="v2-visit" src="https://images.pexels.com/photos/28947779/pexels-photo-28947779.jpeg?auto=compress&cs=tinysrgb&w=1600" shape="rect" placeholder="the space — lanterns, wooden table, window light"></image-slot></div></div></div>
+    <div style="padding:clamp(72px,9vw,140px) clamp(24px,6vw,96px)">
+      <div data-reveal="" style="font-family:'Instrument Serif',serif;font-size:40px;line-height:1">ikigai</div>
+      <h2 data-reveal="" style="margin:28px 0 0;font-family:'Instrument Serif',serif;font-weight:400;font-size:clamp(46px,5.2vw,80px);line-height:1">More than a café,<br><span style="font-style:italic">a place to belong.</span></h2>
+      <div data-reveal="" style="margin-top:48px;font-size:11px;letter-spacing:.32em;text-transform:uppercase;font-weight:600">Where to find us</div>
+      <p data-reveal="" style="margin:18px 0 0;max-width:460px;font-size:17px;line-height:1.65">A few minutes from Stadtmitte. Walk in any day of the week — no reservation, no rush.</p>
+      <div data-reveal="" style="display:flex;flex-wrap:wrap;gap:12px 32px;margin-top:26px;font-family:'Instrument Serif',serif;font-style:italic;font-size:28px">
+        <a href="https://maps.google.com/?q=Kronenstra%C3%9Fe+66+10117+Berlin" style="color:#2F4A2A;text-underline-offset:6px">Directions</a>
+        <a href="https://www.instagram.com/ikigai.teabar/" style="color:#2F4A2A;text-underline-offset:6px">Instagram</a>
+      </div>
+      <div data-reveal="" style="margin-top:56px;display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:28px">
+        <div style="font-family:'Instrument Serif',serif;font-style:italic;font-size:28px;line-height:1.2">Kronenstraße 66<br>10117 Berlin</div>
+        <div style="display:grid;grid-template-columns:auto 1fr;gap:4px 20px;font-size:15px;line-height:1.5"><span>Mon – Thu</span><span>11:30 – 19:00</span><span>Fri – Sat</span><span>11:30 – 19:30</span><span>Sun</span><span>12:00 – 19:00</span></div>
+      </div>
+      <div data-reveal="" style="margin-top:56px;padding-top:32px;border-top:1px solid rgba(47,74,42,.22)">
+        <div style="font-size:11px;letter-spacing:.32em;text-transform:uppercase;font-weight:600">Stay in the loop</div>
+        <sc-if value="{{ notSubscribed }}" hint-placeholder-val="{{ true }}">
+          <form onSubmit="{{ subscribe }}" style="display:flex;gap:12px;margin-top:16px;border-bottom:1px solid #2F4A2A;max-width:460px">
+            <input type="email" required="" placeholder="your email" style="flex:1;min-width:0;border:0;background:transparent;font:inherit;font-size:17px;padding:10px 0;outline:none;color:#2F4A2A">
+            <button type="submit" style="font:inherit;font-size:11px;letter-spacing:.3em;text-transform:uppercase;cursor:pointer;border:0;background:transparent;color:#2F4A2A;padding:0">Join →</button>
+          </form>
+        </sc-if>
+        <sc-if value="{{ subscribed }}" hint-placeholder-val="{{ false }}">
+          <div style="margin-top:16px;font-family:'Instrument Serif',serif;font-style:italic;font-size:26px">See you at the next one.</div>
+        </sc-if>
+        <p style="margin:12px 0 0;font-size:13px;color:#4A5E42">One email a month. Events first.</p>
+      </div>
+    </div>
+  </div>
+  <div style="display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px;padding:24px clamp(20px,4vw,56px);font-size:11px;letter-spacing:.22em;text-transform:uppercase;border-top:1px solid rgba(47,74,42,.18)"><span>© 2026 ikigai tea bar</span><span>@ikigai.teabar</span><span>Imprint · Privacy</span></div>
+</footer>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;hero&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;bowl&quot;,&quot;door&quot;],&quot;default&quot;:&quot;door&quot;,&quot;tsType&quot;:&quot;'bowl'|'door'&quot;,&quot;section&quot;:&quot;Layout&quot;},&quot;grain&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Texture&quot;},&quot;showUpcoming&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Layout&quot;}}">
+const CATS = ['Workshops', 'Run club', 'Chess club', 'Pop-ups', 'Bakery collabs'];
+const EVENTS = [
+  { id: 'w1', src: 'https://images.pexels.com/photos/5946632/pexels-photo-5946632.jpeg?auto=compress&cs=tinysrgb&w=1600', cat: 'Workshops', title: 'Matcha 101', date: 'Mar 2026', media: 'photo', file: 'matcha101.jpg', line: 'Whisking basics for first-timers, from sifting to the perfect foam.', guests: '24 guests', x: 16, y: 5, rot: -3, ratio: '4/5' },
+  { id: 'r1', src: 'https://images.pexels.com/photos/17789703/pexels-photo-17789703.jpeg?auto=compress&cs=tinysrgb&w=1600', cat: 'Run club', title: 'Sunday 5K + iced matcha', date: 'every Sunday', media: 'video', file: 'runclub_sunday.mov', line: 'A slow loop through Mitte, then the whole crew takes over the bar.', guests: '60+ runners', x: 36, y: 2, rot: 2, ratio: '1/1' },
+  { id: 'c1', src: 'https://images.pexels.com/photos/6817705/pexels-photo-6817705.jpeg?auto=compress&cs=tinysrgb&w=1600', cat: 'Chess club', title: 'Chess & Matcha Night', date: 'Feb 2026', media: 'photo', file: 'chess_night.jpg', line: 'Boards on every table, beginners welcome, hojicha on refill.', guests: '40 players', x: 57, y: 7, rot: -2, ratio: '4/3' },
+  { id: 'b1', src: 'https://images.pexels.com/photos/30593915/pexels-photo-30593915.jpeg?auto=compress&cs=tinysrgb&w=1600', cat: 'Bakery collabs', title: 'Matcha Croissant Day', date: 'Apr 2026', media: 'video', file: 'croissant_day.mov', line: 'A one-day pastry with a neighbourhood bakery. Gone by 2 pm.', guests: '300 croissants', x: 79, y: 3, rot: 4, ratio: '4/5' },
+  { id: 'p1', src: 'https://images.pexels.com/photos/8474082/pexels-photo-8474082.jpeg?auto=compress&cs=tinysrgb&w=1600', cat: 'Pop-ups', title: 'Ceramics Pop-up', date: 'May 2026', media: 'photo', file: 'ceramics_popup.jpg', line: 'Local potters, handmade chawan and a full house all weekend.', guests: '2 days', x: 22, y: 42, rot: 3, ratio: '1/1' },
+  { id: 'w2', src: 'https://images.pexels.com/photos/8329642/pexels-photo-8329642.jpeg?auto=compress&cs=tinysrgb&w=1600', cat: 'Workshops', title: 'Team Tea Ceremony', date: 'Jun 2026', media: 'photo', file: 'team_ceremony.jpg', line: 'A private session for a company offsite — whisks, stories, no slides.', guests: '30 guests', x: 44, y: 38, rot: -4, ratio: '4/5' },
+  { id: 'r2', src: 'https://images.pexels.com/photos/29684376/pexels-photo-29684376.jpeg?auto=compress&cs=tinysrgb&w=1600', cat: 'Run club', title: 'Run Club Anniversary', date: 'Jul 2026', media: 'video', file: 'runclub_1year.mov', line: 'One year of Sundays, celebrated with one very long table.', guests: '180 runners', x: 66, y: 40, rot: 2, ratio: '4/3' },
+  { id: 'c2', src: 'https://images.pexels.com/photos/6817705/pexels-photo-6817705.jpeg?auto=compress&cs=tinysrgb&w=1600', cat: 'Chess club', title: 'Blitz Tournament', date: 'Aug 2026', media: 'photo', file: 'blitz_tourney.jpg', line: 'Three-minute games, loud cheering, a matcha-green trophy.', guests: '32 players', x: 17, y: 72, rot: -2, ratio: '4/3' },
+  { id: 'p2', src: 'https://images.pexels.com/photos/28730004/pexels-photo-28730004.jpeg?auto=compress&cs=tinysrgb&w=1600', cat: 'Pop-ups', title: 'Skincare Brand Launch', date: 'Sep 2026', media: 'video', file: 'brand_launch.mov', line: 'Launch evening with tastings, a DJ and a custom drink.', guests: '120 guests', x: 37, y: 71, rot: 3, ratio: '4/3' },
+  { id: 'b2', src: 'https://images.pexels.com/photos/32972501/pexels-photo-32972501.jpeg?auto=compress&cs=tinysrgb&w=1600', cat: 'Bakery collabs', title: 'Hojicha Bun Weekend', date: 'Sep 2026', media: 'photo', file: 'hojicha_buns.jpg', line: 'Roasted-tea cinnamon buns baked together with our bakery friends.', guests: '2 days', x: 80, y: 68, rot: -3, ratio: '1/1' },
+];
+const DRINKS = [
+  { name: 'Usucha', price: '€ 5.0', note: 'Ceremonial matcha and water. Nothing to hide behind.' },
+  { name: 'Matcha Latte', price: '€ 5.8', note: 'Oat, whole or almond. Hot or over ice.' },
+  { name: 'Strawberry Cloud', price: '€ 6.5', note: 'House strawberry purée, milk, matcha on top.' },
+  { name: 'Hojicha Latte', price: '€ 5.5', note: 'Roasted green tea. Toasty, low caffeine, cosy.' },
+];
+const UPCOMING = [
+  { day: '18', mon: 'OCT · SUN', title: 'Sunday 5K + iced matcha', meta: '10:00 · meet at the door · free' },
+  { day: '22', mon: 'OCT · THU', title: 'Chess & Matcha Night', meta: '18:00 – 22:00 · all levels · boards provided' },
+  { day: '31', mon: 'OCT · SAT', title: 'Matcha 101 Workshop', meta: '14:00 · 12 spots · € 35 incl. drinks' },
+];
+const clamp = (v, a, b) => Math.max(a, Math.min(b, v));
+
+class Component extends DCLogic {
+  state = { hero: null, pos: {}, z: {}, top: 10, open: null, view: 'desktop', filter: null, narrow: false, subscribed: false };
+  boardRef = React.createRef();
+  boardWrapRef = React.createRef();
+
+  componentDidMount() {
+    this.applyGrain();
+    const el = this.boardWrapRef.current;
+    if (el && window.ResizeObserver) {
+      this.ro = new ResizeObserver(([e]) => { const n = e.contentRect.width < 760; if (n !== this.state.narrow) this.setState({ narrow: n }); });
+      this.ro.observe(el);
+    }
+    this.onScroll = () => this.tick();
+    document.addEventListener('scroll', this.onScroll, { passive: true, capture: true });
+    window.addEventListener('scroll', this.onScroll, { passive: true });
+    window.addEventListener('resize', this.onScroll);
+    this.tick(); this.t1 = setTimeout(() => this.tick(), 400);
+  }
+  componentDidUpdate() { this.applyGrain(); this.tick(); }
+  componentWillUnmount() {
+    this.ro && this.ro.disconnect(); clearTimeout(this.t1);
+    document.removeEventListener('scroll', this.onScroll, { capture: true });
+    window.removeEventListener('resize', this.onScroll);
+    window.removeEventListener('scroll', this.onScroll);
+    document.body.removeAttribute('data-grain');
+  }
+  applyGrain() { document.body.dataset.grain = (this.props.grain ?? false) ? 'on' : 'off'; }
+
+  tick() {
+    const vh = window.innerHeight;
+    const vw = window.innerWidth;
+    const hero = document.querySelector('[data-hero]');
+    let past = true, onPhoto = false, mark = true;
+    if (hero) {
+      const r = hero.getBoundingClientRect();
+      const p = clamp(-r.top / Math.max(1, r.height - vh), 0, 1);
+      const e = p < .5 ? 2 * p * p : 1 - Math.pow(-2 * p + 2, 2) / 2;
+      past = r.bottom < 90;
+      const img = hero.querySelector('[data-hero-img]');
+      if (hero.dataset.hero === 'bowl') {
+        const r0 = Math.min(230, vw * 0.3, vh * 0.3), r1 = Math.hypot(vw, vh) / 2 + 10;
+        if (img) img.style.clipPath = 'circle(' + (r0 + (r1 - r0) * e).toFixed(1) + 'px at 50% 50%)';
+        const L = hero.querySelector('[data-iki]'), R = hero.querySelector('[data-gai]');
+        if (L) L.style.transform = 'translateX(' + (-e * vw * 0.6).toFixed(1) + 'px)';
+        if (R) R.style.transform = 'translateX(' + (e * vw * 0.6).toFixed(1) + 'px)';
+        mark = past; onPhoto = e > .55;
+      } else {
+        const w0 = Math.min(440, vw * .7), h0 = Math.min(600, vh * .72);
+        const w = w0 + (vw - w0) * e, h = h0 + (vh - h0) * e, rad = (w0 / 2) * (1 - e);
+        const side = (vw - w) / 2, top = vh - h;
+        if (img) img.style.clipPath = 'inset(' + top.toFixed(1) + 'px ' + side.toFixed(1) + 'px 0px ' + side.toFixed(1) + 'px round ' + rad.toFixed(1) + 'px ' + rad.toFixed(1) + 'px 0px 0px)';
+        onPhoto = e > .6;
+      }
+      hero.querySelectorAll('[data-fade]').forEach(el => { el.style.opacity = String(1 - clamp(p * 2.2, 0, 1)); });
+      const late = hero.querySelector('[data-late]');
+      if (late) { const q = clamp((p - .62) / .28, 0, 1); late.style.opacity = String(q); late.style.transform = 'translateY(' + ((1 - q) * 20).toFixed(1) + 'px)'; }
+    }
+    const nav = document.querySelector('[data-nav]');
+    if (nav) {
+      nav.style.background = past ? 'rgba(247,241,230,.94)' : 'transparent';
+      nav.style.color = past ? '#2F4A2A' : (onPhoto ? '#F7F1E6' : '#2F4A2A');
+      nav.style.backdropFilter = past ? 'blur(10px)' : 'none';
+      nav.style.boxShadow = past ? '0 1px 0 rgba(47,74,42,.12)' : 'none';
+      const m = nav.querySelector('[data-navmark]'); if (m) m.style.opacity = mark ? '1' : '0';
+    }
+    document.querySelectorAll('[data-speed]').forEach(el => {
+      const r = el.parentElement.getBoundingClientRect();
+      const c = r.top + r.height / 2 - vh / 2;
+      el.style.transform = 'translate3d(0,' + (-c * parseFloat(el.dataset.speed)).toFixed(1) + 'px,0)';
+    });
+    document.querySelectorAll('[data-reveal]').forEach(el => {
+      const top = el.getBoundingClientRect().top - (el._ty || 0);
+      const p = clamp((vh - top) / (vh * 0.28), 0, 1);
+      el._ty = (1 - p) * 36;
+      el.style.opacity = String(p);
+      el.style.transform = 'translateY(' + el._ty.toFixed(1) + 'px)';
+    });
+  }
+
+  front(key) { this.setState(s => ({ top: s.top + 1, z: { ...s.z, [key]: s.top + 1 } })); }
+
+  drag(key, base, ref, onClick) {
+    return (e) => {
+      if (e.button > 0) return;
+      e.preventDefault(); e.stopPropagation();
+      const el = ref.current; if (!el) return;
+      const r = el.getBoundingClientRect();
+      const sx = e.clientX, sy = e.clientY;
+      const p0 = this.state.pos[key] || base;
+      let moved = false;
+      this.front(key);
+      const mv = (ev) => {
+        const dx = ev.clientX - sx, dy = ev.clientY - sy;
+        if (!moved && Math.abs(dx) + Math.abs(dy) > 4) moved = true;
+        if (!moved) return;
+        this.setState(s => ({ pos: { ...s.pos, [key]: { x: clamp(p0.x + dx / r.width * 100, -6, 94), y: clamp(p0.y + dy / r.height * 100, -2, 92) } } }));
+      };
+      const up = () => {
+        window.removeEventListener('pointermove', mv); window.removeEventListener('pointerup', up);
+        if (!moved && onClick) onClick();
+      };
+      window.addEventListener('pointermove', mv); window.addEventListener('pointerup', up);
+    };
+  }
+
+  renderVals() {
+    const s = this.state;
+    const filter = s.filter;
+    const desktop = s.view === 'desktop' && !s.narrow;
+    const ev = (e) => ({ ...e, slot: 'ev-' + e.id, ph: (e.media === 'video' ? 'video still — ' : '') + e.title.toLowerCase(), isVideo: e.media === 'video', media: e.media === 'video' ? '▶ video' : 'photo', open: () => this.setState({ open: e.id }) });
+    const openE = EVENTS.find(e => e.id === s.open);
+    const pickFilter = (c) => () => this.setState(st => ({ filter: st.filter === c ? null : c }));
+    return {
+      boardRef: this.boardRef, boardWrapRef: this.boardWrapRef,
+      heroBowl: (s.hero || this.props.hero || 'bowl') === 'bowl', heroDoor: (s.hero || this.props.hero || 'bowl') === 'door',
+      heroTabs: [['bowl', '2a · bowl'], ['door', '2d · doorway']].map(([id, label]) => { const on = (s.hero || this.props.hero || 'bowl') === id; return { label, bg: on ? '#C9D6A0' : 'transparent', fg: on ? '#2A1E16' : '#F7F1E6', pick: () => { this.setState({ hero: id }); window.scrollTo(0, 0); } }; }),
+      drinks: DRINKS,
+      count: EVENTS.length,
+      isDesktop: desktop, isList: !desktop,
+      setDesktop: () => this.setState({ view: 'desktop' }), setList: () => this.setState({ view: 'list' }),
+      deskBg: desktop ? '#F2E9DA' : 'transparent', deskFg: desktop ? '#2A1E16' : '#F2E9DA',
+      listBg: !desktop ? '#F2E9DA' : 'transparent', listFg: !desktop ? '#2A1E16' : '#F2E9DA',
+      folders: CATS.map((c, i) => {
+        const on = filter === c;
+        return { name: c, top: (4 + i * 16) + '%', opacity: !filter || on ? 1 : .5, tab: on ? '#A9BD78' : '#C2A77D', body: on ? '#C9D6A0' : '#D9C29C', pick: pickFilter(c) };
+      }),
+      boardFiles: EVENTS.map(e => {
+        const k = 'ev-' + e.id, p = s.pos[k] || { x: e.x, y: e.y };
+        return { ...ev(e), left: s.pos[k] ? p.x + '%' : 'max(130px, ' + p.x + '%)', top: p.y + '%', rot: e.rot + 'deg', z: s.z[k] || 2, opacity: !filter || e.cat === filter ? 1 : .22, onFront: () => this.front(k), onDown: this.drag(k, { x: e.x, y: e.y }, this.boardRef, () => this.setState({ open: e.id })) };
+      }),
+      chips: [{ name: 'All', c: null }, ...CATS.map(c => ({ name: c, c }))].map(({ name, c }) => {
+        const on = filter === c;
+        return { name, bg: on ? '#F2E9DA' : 'transparent', fg: on ? '#2A1E16' : '#F2E9DA', pick: () => this.setState({ filter: c }) };
+      }),
+      listEvents: EVENTS.filter(e => !filter || e.cat === filter).map(ev),
+      hasOpen: !!openE,
+      open: openE ? ev(openE) : {},
+      close: () => this.setState({ open: null }),
+      stop: (e) => e.stopPropagation(),
+      showUpcoming: this.props.showUpcoming ?? true,
+      upcoming: UPCOMING,
+      subscribed: s.subscribed, notSubscribed: !s.subscribed,
+      subscribe: (e) => { e.preventDefault(); this.setState({ subscribed: true }); },
+    };
+  }
+}
+</script>
+</body>
+</html>
