@@ -1,14 +1,16 @@
 import Image from 'next/image';
-import Link from 'next/link';
 import { HOURS } from '@/content/hours';
 import { VISIT_PHOTO } from '@/content/photos';
 import { SITE } from '@/content/site';
 import Newsletter from './Newsletter';
 
-/** Where to find us, the hours, the newsletter and the footer bar. */
+/**
+ * The home page's visit block. The compact version — address, hours, the way
+ * in — repeats in the footer on every page.
+ */
 export default function Visit() {
   return (
-    <footer id="visit" className="bg-cream text-matcha-deep">
+    <section id="visit" className="bg-cream text-matcha-deep">
       <div className="grid grid-cols-[repeat(auto-fit,minmax(min(100%,420px),1fr))]">
         <div className="relative min-h-[80vh] overflow-hidden">
           <div className="absolute inset-0">
@@ -30,16 +32,16 @@ export default function Visit() {
             ikigai
           </div>
           <h2 data-reveal className="t-h2-visit mt-7">
-            More than a café,
+            more than a café,
             <br />
             <span className="italic">a place to belong.</span>
           </h2>
 
           <div data-reveal className="t-eyebrow mt-12">
-            Where to find us
+            where to find us
           </div>
           <p data-reveal className="t-body-visit m-0 mt-[18px] max-w-[460px]">
-            A few minutes from Stadtmitte. Walk in any day of the week — no reservation, no rush.
+            a few minutes from stadtmitte. walk in any day of the week — no reservation, no rush.
           </p>
 
           <div data-reveal className="t-editorial mt-6 flex flex-wrap gap-x-8 gap-y-3">
@@ -49,7 +51,7 @@ export default function Visit() {
               rel="noreferrer"
               className="text-matcha-deep underline [text-underline-offset:6px] hover:text-matcha"
             >
-              Directions
+              directions
             </a>
             <a
               href={SITE.instagram}
@@ -57,7 +59,7 @@ export default function Visit() {
               rel="noreferrer"
               className="text-matcha-deep underline [text-underline-offset:6px] hover:text-matcha"
             >
-              Instagram
+              instagram
             </a>
           </div>
 
@@ -85,27 +87,6 @@ export default function Visit() {
           <Newsletter />
         </div>
       </div>
-
-      <div className="t-footer-label flex flex-wrap justify-between gap-3 border-t border-[var(--hairline-cream-soft)] px-[var(--section-x-narrow)] py-6">
-        <span>© {new Date().getFullYear()} ikigai tea bar</span>
-        <a
-          href={SITE.instagram}
-          target="_blank"
-          rel="noreferrer"
-          className="hover:text-matcha"
-        >
-          {SITE.instagramHandle}
-        </a>
-        <span className="flex gap-3">
-          <Link href="/imprint" className="hover:text-matcha">
-            Imprint
-          </Link>
-          <span aria-hidden>·</span>
-          <Link href="/privacy" className="hover:text-matcha">
-            Privacy
-          </Link>
-        </span>
-      </div>
-    </footer>
+    </section>
   );
 }

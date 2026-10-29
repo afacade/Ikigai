@@ -15,11 +15,11 @@ export default function Newsletter() {
 
   return (
     <div data-reveal className="mt-14 border-t border-[var(--hairline-cream)] pt-8">
-      <div className="t-eyebrow">Stay in the loop</div>
+      <div className="t-eyebrow">stay in the loop</div>
 
       {subscribed ? (
         <div className="t-aside mt-4" role="status">
-          See you at the next one.
+          see you at the next one.
         </div>
       ) : (
         <form
@@ -31,7 +31,7 @@ export default function Newsletter() {
           className="mt-4 flex max-w-[460px] gap-3 border-b border-matcha-deep"
         >
           <label htmlFor="newsletter-email" className="sr-only">
-            Your email address
+            your email address
           </label>
           <input
             id="newsletter-email"
@@ -43,12 +43,12 @@ export default function Newsletter() {
             className="t-body min-w-0 flex-1 border-0 bg-transparent py-2.5 text-matcha-deep outline-none placeholder:text-field-placeholder"
           />
           <button type="submit" className="t-button-label cursor-pointer">
-            Join →
+            join →
           </button>
         </form>
       )}
 
-      <p className="t-fine m-0 mt-3 text-matcha-text-2">One email a month. Events first.</p>
+      <p className="t-fine m-0 mt-3 text-matcha-text-2">one email a month. events first.</p>
     </div>
   );
 }

@@ -24,6 +24,16 @@ jobs:
           node-version: 20
           cache: npm
       - run: npm ci
+      # next/font downloads and self-hosts the Google faces at build time.
+      # Shippori Mincho ships unsubsetted for the kana, which is a lot of files
+      # on a cold cache — keep them between runs.
+      - uses: actions/cache@v4
+        with:
+          path: .next/cache
+          key: next-${{ hashFiles('package-lock.json') }}-${{ hashFiles('src/**') }}
+          restore-keys: |
+            next-${{ hashFiles('package-lock.json') }}-
+            next-
       - run: npm run build:pages
       - name: Keep Jekyll away from _next
         run: touch out/.nojekyll

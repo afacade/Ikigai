@@ -92,17 +92,17 @@ export default function DoorwayHero() {
           data-fade
           className="hero-fade t-body-sm pointer-events-none absolute bottom-14 right-[clamp(20px,5vw,64px)] m-0 max-w-[270px]"
         >
-          A matcha tea bar and a third place in Berlin Mitte. Run club on Sundays, chess on
-          Thursdays, a seat for you any day.
+          a matcha tea bar and a third place in berlin mitte. run club on sundays, chess on
+          thursdays, a seat for you any day.
         </p>
 
         <div
           ref={late}
           className="hero-late t-late pointer-events-none absolute bottom-[clamp(40px,9vh,90px)] left-[clamp(20px,5vw,64px)] text-cream opacity-0"
         >
-          Welcome in.
+          welcome in.
           <br />
-          <span className="italic">Stay a while.</span>
+          <span className="italic">stay a while.</span>
         </div>
       </div>
     </header>

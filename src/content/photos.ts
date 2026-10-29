@@ -13,7 +13,7 @@ export interface Photo {
 
 export const DOORWAY: Photo = {
   src: pexels(28947779),
-  alt: 'The view in through the entrance of the tea bar, warm interior light',
+  alt: 'the view in through the entrance of the tea bar, warm interior light',
 };
 
 /** The five feathered circles, in document order with their parallax speeds. */
@@ -27,7 +27,7 @@ export const INTRO_CIRCLES: (Photo & {
 })[] = [
   {
     src: pexels(32695045),
-    alt: 'Matcha powder close up',
+    alt: 'matcha powder close up',
     left: '56%',
     top: '30%',
     size: 'clamp(170px, 26vw, 400px)',
@@ -35,7 +35,7 @@ export const INTRO_CIRCLES: (Photo & {
   },
   {
     src: pexels(7144920),
-    alt: 'A bamboo whisk resting on a bowl',
+    alt: 'a bamboo whisk resting on a bowl',
     left: '26%',
     top: '46%',
     size: 'clamp(130px, 19vw, 300px)',
@@ -43,7 +43,7 @@ export const INTRO_CIRCLES: (Photo & {
   },
   {
     src: pexels(17789703),
-    alt: 'The run club out on the street',
+    alt: 'the run club out on the street',
     left: '5%',
     top: '64%',
     size: 'clamp(150px, 22vw, 340px)',
@@ -51,7 +51,7 @@ export const INTRO_CIRCLES: (Photo & {
   },
   {
     src: pexels(34164459),
-    alt: 'The long wooden table',
+    alt: 'the long wooden table',
     left: '43%',
     top: '70%',
     size: 'clamp(130px, 18vw, 290px)',
@@ -59,7 +59,7 @@ export const INTRO_CIRCLES: (Photo & {
   },
   {
     src: pexels(6817705),
-    alt: 'Chess pieces mid-game',
+    alt: 'chess pieces mid-game',
     left: '74%',
     top: '62%',
     size: 'clamp(150px, 22vw, 340px)',
@@ -69,24 +69,24 @@ export const INTRO_CIRCLES: (Photo & {
 
 export const DRINKS_PHOTO: Photo = {
   src: pexels(32972501),
-  alt: 'Matcha being poured over milk',
+  alt: 'matcha being poured over milk',
 };
 
 export const VISIT_PHOTO: Photo = {
   src: pexels(28947779),
-  alt: 'Inside the tea bar: lanterns, the wooden table, window light',
+  alt: 'inside the tea bar: lanterns, the wooden table, window light',
 };
 
 export const HOST_PHOTOS: (Photo & { file: string; ratio: string })[] = [
   {
     src: pexels(5946632),
-    alt: 'A team workshop around the table',
+    alt: 'a team workshop around the table',
     file: 'team_workshop.mov',
     ratio: '4/5',
   },
   {
     src: pexels(8890516),
-    alt: 'A brand pop-up set up in the space',
+    alt: 'a brand pop-up set up in the space',
     file: 'popup_setup.jpg',
     ratio: '1/1',
   },

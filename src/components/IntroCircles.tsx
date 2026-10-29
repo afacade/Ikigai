@@ -10,11 +10,11 @@ export default function IntroCircles() {
   return (
     <section className="relative box-border min-h-[140vh] overflow-hidden bg-cream px-[var(--section-x)] py-[clamp(110px,14vw,180px)] text-matcha-deep">
       <div data-reveal className="t-statement relative z-1 max-w-[1000px]">
-        Ceremonial matcha, whisked to order
+        ceremonial matcha, whisked to order
         <br />
-        Run clubs, chess nights &amp; workshops
+        run clubs, chess nights &amp; workshops
         <br />
-        <span className="italic">A third place in Berlin Mitte</span>
+        <span className="italic">a third place in berlin mitte</span>
       </div>
 
       {INTRO_CIRCLES.map((c) => (

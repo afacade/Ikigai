@@ -8,22 +8,22 @@ import { SITE } from './site';
 export const UPCOMING: UpcomingEvent[] = [
   {
     day: '18',
-    mon: 'OCT · SUN',
-    title: 'Sunday 5K + iced matcha',
+    mon: 'oct · sun',
+    title: 'sunday 5k + iced matcha',
     meta: '10:00 · meet at the door · free',
     href: SITE.instagram,
   },
   {
     day: '22',
-    mon: 'OCT · THU',
-    title: 'Chess & Matcha Night',
+    mon: 'oct · thu',
+    title: 'chess & matcha night',
     meta: '18:00 – 22:00 · all levels · boards provided',
     href: SITE.instagram,
   },
   {
     day: '31',
-    mon: 'OCT · SAT',
-    title: 'Matcha 101 Workshop',
+    mon: 'oct · sat',
+    title: 'matcha 101 workshop',
     meta: '14:00 · 12 spots · € 35 incl. drinks',
     href: SITE.instagram,
   },

@@ -7,11 +7,11 @@
  */
 
 export type EventCategory =
-  | 'Workshops'
-  | 'Run club'
-  | 'Chess club'
-  | 'Pop-ups'
-  | 'Bakery collabs';
+  | 'workshops'
+  | 'run club'
+  | 'chess club'
+  | 'pop-ups'
+  | 'bakery collabs';
 
 export type MediaKind = 'photo' | 'video';
 
@@ -59,7 +59,7 @@ export interface Drink {
 export interface UpcomingEvent {
   /** Day of the month: '18'. */
   day: string;
-  /** Month and weekday: 'OCT · SUN'. */
+  /** Month and weekday: 'oct · sun'. */
   mon: string;
   title: string;
   meta: string;
@@ -70,4 +70,46 @@ export interface UpcomingEvent {
 export interface OpeningHours {
   days: string;
   hours: string;
+}
+
+/* ---------------------------------------------------------------------------
+ * The pages the client asked for on 27 Oct: our matcha, events, book us, faqs.
+ * Everything below is placeholder copy written to be realistic, not true.
+ * See CONTENT-TO-CONFIRM.md for the line-by-line checklist.
+ * ------------------------------------------------------------------------ */
+
+/** One block on the "our matcha" page. */
+export interface MatchaBlock {
+  /** Small-caps label above the block. */
+  label: string;
+  /** Serif heading, one line. */
+  heading: string;
+  body: string;
+}
+
+/** A bookable format on the "book us" page. */
+export interface BookingFormat {
+  id: string;
+  name: string;
+  /** One line, what it is. */
+  line: string;
+  /** '8 – 16 guests', 'up to 60 standing'. */
+  capacity: string;
+  /** '90 minutes', 'an evening'. */
+  duration: string;
+  /** Pre-formatted and prefixed: 'from € 45 per person'. */
+  price: string;
+  /** What the price covers. */
+  includes: string[];
+}
+
+export interface Faq {
+  q: string;
+  a: string;
+}
+
+export interface FaqGroup {
+  /** Section heading on the faqs page. */
+  name: string;
+  items: Faq[];
 }

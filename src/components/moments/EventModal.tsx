@@ -1,6 +1,7 @@
 'use client';
 
 import Image from 'next/image';
+import Link from 'next/link';
 import { useEffect, useRef } from 'react';
 import type { ArchiveEvent } from '@/content/types';
 
@@ -104,13 +105,9 @@ export default function EventModal({
                 {event.media === 'video' ? '▶ video' : 'photo'}
               </span>
             </div>
-            <a
-              href="#host"
-              onClick={onClose}
-              className="pill pill-dark mt-auto self-start"
-            >
+            <Link href="/book-us" className="pill pill-dark mt-auto self-start">
               plan something like this →
-            </a>
+            </Link>
           </div>
         </div>
       </div>

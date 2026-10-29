@@ -27,9 +27,9 @@ export default function ImprintPage() {
       <p>
         [Legal entity name, e.g. ikigai Tea Bar GmbH]
         <br />
-        {SITE.street}
+        {SITE.legalStreet}
         <br />
-        {SITE.city}
+        {SITE.legalCity}
         <br />
         Germany
       </p>

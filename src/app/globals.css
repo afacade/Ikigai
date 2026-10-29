@@ -152,7 +152,15 @@
     font-size: 28px;
     line-height: 1;
     letter-spacing: 0;
-    text-transform: none;
+    text-transform: lowercase;
+  }
+  /* "tea bar" under the wordmark — the eyebrow scale, optically centred. */
+  .t-wordmark-sub {
+    font-size: 9px;
+    letter-spacing: 0.34em;
+    text-transform: lowercase;
+    line-height: 1;
+    text-indent: 0.34em;
   }
   .t-item-name {
     font-family: var(--font-serif);
@@ -222,23 +230,23 @@
   .t-nav-link {
     font-size: 11px;
     letter-spacing: 0.26em;
-    text-transform: uppercase;
+    text-transform: lowercase;
   }
   .t-eyebrow {
     font-size: 11px;
     letter-spacing: 0.32em;
-    text-transform: uppercase;
+    text-transform: lowercase;
     font-weight: 600;
   }
   .t-button-label {
     font-size: 11px;
     letter-spacing: 0.3em;
-    text-transform: uppercase;
+    text-transform: lowercase;
   }
   .t-footer-label {
     font-size: 11px;
     letter-spacing: 0.22em;
-    text-transform: uppercase;
+    text-transform: lowercase;
   }
   .t-cta-label {
     font-size: 16px;
@@ -254,7 +262,7 @@
   .t-headline-bring {
     font-weight: 900;
     font-stretch: 125%;
-    text-transform: uppercase;
+    text-transform: lowercase;
     font-size: clamp(46px, 6.6vw, 96px);
     line-height: 0.88;
     letter-spacing: -0.03em;
@@ -275,13 +283,13 @@
     font-family: var(--font-mono);
     font-size: 12px;
     letter-spacing: 0.14em;
-    text-transform: uppercase;
+    text-transform: lowercase;
   }
   .t-mono-meta {
     font-family: var(--font-mono);
     font-size: 11px;
     letter-spacing: 0.06em;
-    text-transform: uppercase;
+    text-transform: lowercase;
   }
   .t-mono-hint {
     font-family: var(--font-mono);

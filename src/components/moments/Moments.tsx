@@ -52,7 +52,7 @@ export default function Moments() {
               the archive · {EVENTS.length} files
             </div>
             <h2 className="t-h2-moments mt-3">
-              Things we&rsquo;ve <span className="italic">hosted</span>
+              things we&rsquo;ve <span className="italic">hosted</span>
             </h2>
           </div>
 
@@ -97,7 +97,7 @@ export default function Moments() {
                   onClick={() => setFilter(null)}
                   className="pill pill-chip"
                 >
-                  All
+                  all
                 </button>
                 {CATEGORIES.map((cat) => (
                   <button

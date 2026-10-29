@@ -2,8 +2,8 @@ import type { Drink } from './types';
 
 /** Placeholder menu — prices must be confirmed by the client. */
 export const DRINKS: Drink[] = [
-  { name: 'Usucha', price: '€ 5.0', note: 'Ceremonial matcha and water. Nothing to hide behind.' },
-  { name: 'Matcha Latte', price: '€ 5.8', note: 'Oat, whole or almond. Hot or over ice.' },
-  { name: 'Strawberry Cloud', price: '€ 6.5', note: 'House strawberry purée, milk, matcha on top.' },
-  { name: 'Hojicha Latte', price: '€ 5.5', note: 'Roasted green tea. Toasty, low caffeine, cosy.' },
+  { name: 'usucha', price: '€ 5.0', note: 'ceremonial matcha and water. nothing to hide behind.' },
+  { name: 'matcha latte', price: '€ 5.8', note: 'oat, whole or almond. hot or over ice.' },
+  { name: 'strawberry cloud', price: '€ 6.5', note: 'house strawberry purée, milk, matcha on top.' },
+  { name: 'hojicha latte', price: '€ 5.5', note: 'roasted green tea. toasty, low caffeine, cosy.' },
 ];

@@ -1,5 +1,9 @@
 import type { Metadata } from 'next';
-import { Archivo, IBM_Plex_Mono, Instrument_Serif, Shippori_Mincho } from 'next/font/google';
+import { Archivo, IBM_Plex_Mono, Instrument_Serif } from 'next/font/google';
+import localFont from 'next/font/local';
+import MotionRoot from '@/components/MotionRoot';
+import Nav from '@/components/Nav';
+import SiteFooter from '@/components/SiteFooter';
 import './globals.css';
 
 const instrumentSerif = Instrument_Serif({
@@ -10,7 +14,7 @@ const instrumentSerif = Instrument_Serif({
   display: 'swap',
 });
 
-/** Variable, with the width axis — the Host headline needs wdth 125%. */
+/** Variable, with the width axis — the book us headline needs wdth 125%. */
 const archivo = Archivo({
   subsets: ['latin'],
   axes: ['wdth'],
@@ -19,14 +23,19 @@ const archivo = Archivo({
 });
 
 /**
- * Google's metadata only declares `latin` / `latin-ext` subsets for Shippori
- * Mincho, and a latin-only request drops the kana and kanji this site sets in
- * it. Omitting `subsets` fetches every unicode-range the family publishes —
- * which requires `preload: false`, a fair trade for two short decorative lines.
+ * Shippori Mincho, cut to the nine glyphs this site actually sets in it:
+ * いらっしゃい and 生き甲斐. 2.5 KB.
+ *
+ * Google's metadata declares no `japanese` subset for this family, so
+ * next/font/google can only fetch latin (which drops the kana outright) or the
+ * whole unsubsetted family — about two thousand files, which stalls the build
+ * for over ten minutes on a cold cache and would do the same on every CI run.
+ * See src/fonts/README.md for how to regenerate the subset if the copy changes.
  */
-const shipporiMincho = Shippori_Mincho({
-  weight: ['400', '500'],
-  preload: false,
+const shipporiMincho = localFont({
+  src: '../fonts/shippori-mincho-subset.woff2',
+  weight: '400',
+  style: 'normal',
   variable: '--font-shippori-mincho',
   display: 'swap',
 });
@@ -39,13 +48,16 @@ const ibmPlexMono = IBM_Plex_Mono({
 });
 
 export const metadata: Metadata = {
-  title: 'ikigai · matcha tea bar in Berlin Mitte',
+  title: {
+    default: 'ikigai tea bar · berlin mitte',
+    template: '%s · ikigai tea bar',
+  },
   description:
-    'A matcha tea bar and a third place at Kronenstraße 66, Berlin Mitte. Run club on Sundays, chess on Thursdays, a seat for you any day.',
+    'a matcha tea bar and a third place at kronenstraße 66, berlin mitte. run club on sundays, chess on thursdays, a seat for you any day.',
   openGraph: {
-    title: 'ikigai · matcha tea bar in Berlin Mitte',
+    title: 'ikigai tea bar · berlin mitte',
     description:
-      'Ceremonial matcha, whisked to order. Run clubs, chess nights and workshops in Berlin Mitte.',
+      'ceremonial matcha, whisked to order. run clubs, chess nights and workshops in berlin mitte.',
     locale: 'en_GB',
     type: 'website',
   },
@@ -57,7 +69,12 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       lang="en"
       className={`${instrumentSerif.variable} ${archivo.variable} ${shipporiMincho.variable} ${ibmPlexMono.variable}`}
     >
-      <body>{children}</body>
+      <body>
+        <MotionRoot />
+        <Nav />
+        <main>{children}</main>
+        <SiteFooter />
+      </body>
     </html>
   );
 }

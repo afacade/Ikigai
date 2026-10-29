@@ -1,31 +1,45 @@
 'use client';
 
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import { useEffect, useRef, useState } from 'react';
 import { clamp, easeInOutQuad, prefersReducedMotion, useScrollPass } from '@/lib/scroll';
 
+/**
+ * The four categories the client asked for, in the order they gave them:
+ * our matcha → events → book us → faqs. They read left to right across the
+ * top, split around the centred wordmark.
+ */
 const LINKS = [
-  { label: 'Drinks', href: '#drinks' },
-  { label: 'Moments', href: '#moments' },
-  { label: 'Host with us', href: '#host' },
-  { label: 'Visit', href: '#visit' },
+  { label: 'our matcha', href: '/our-matcha' },
+  { label: 'events', href: '/events' },
+  { label: 'book us', href: '/book-us' },
+  { label: 'faqs', href: '/faqs' },
 ];
 
 const LEFT = LINKS.slice(0, 2);
 const RIGHT = LINKS.slice(2);
 
+function Wordmark({ className = '' }: { className?: string }) {
+  return (
+    <span className={`block text-center ${className}`}>
+      <span className="t-wordmark-nav block">ikigai</span>
+      <span className="t-wordmark-sub block">tea bar</span>
+    </span>
+  );
+}
+
 /**
- * The fixed nav, in one of three colour states.
+ * The fixed nav, in one of three colour states over the home hero.
  *
  * It reads the hero's rect itself in the shared scroll pass and writes its own
- * styles, so hero progress never has to travel through React.
- *
- * Under 640px the four links collapse into a menu button and a cream sheet —
- * the handoff leaves that undesigned and asks for the minimal version.
+ * styles, so hero progress never has to travel through React. Pages without a
+ * hero have no `#top`, so the pass settles straight into the scrolled state.
  */
 export default function Nav() {
   const nav = useRef<HTMLElement>(null);
-  const mark = useRef<HTMLAnchorElement>(null);
   const [menuOpen, setMenuOpen] = useState(false);
+  const pathname = usePathname();
 
   useScrollPass(
     (_vw, vh) => {
@@ -54,12 +68,12 @@ export default function Nav() {
           : 'var(--color-matcha-deep)';
       el.style.backdropFilter = past ? 'blur(10px)' : 'none';
       el.style.boxShadow = past ? 'var(--shadow-nav)' : 'none';
-      // The handoff hides the wordmark over the hero; the doorway hero never
-      // says the name, so it stays as the masthead the whole way down.
-      if (mark.current) mark.current.style.opacity = '1';
     },
     { ignoreReducedMotion: true },
   );
+
+  // A route change unmounts nothing here, so close the sheet by hand.
+  useEffect(() => setMenuOpen(false), [pathname]);
 
   useEffect(() => {
     if (!menuOpen) return;
@@ -75,36 +89,38 @@ export default function Nav() {
     };
   }, [menuOpen]);
 
+  const link = (l: { label: string; href: string }) => {
+    const active = pathname === l.href || pathname === `${l.href}/`;
+    return (
+      <Link
+        key={l.href}
+        href={l.href}
+        aria-current={active ? 'page' : undefined}
+        className={`t-nav-link no-underline ${active ? 'underline [text-underline-offset:7px]' : ''}`}
+      >
+        {l.label}
+      </Link>
+    );
+  };
+
   return (
     <>
       <nav
         ref={nav}
         aria-label="Primary"
-        className="fixed inset-x-0 top-0 z-200 grid grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)] items-center gap-5 px-[var(--section-x-narrow)] py-5 text-matcha-deep transition-[background,color,box-shadow] duration-400 motion-reduce:transition-none"
+        className="fixed inset-x-0 top-0 z-200 grid grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)] items-center gap-5 px-[var(--section-x-narrow)] py-4 text-matcha-deep transition-[background,color,box-shadow] duration-400 motion-reduce:transition-none"
       >
-        <div className="hidden flex-wrap gap-x-8 gap-y-2 sm:flex">
-          {LEFT.map((l) => (
-            <a key={l.href} href={l.href} className="t-nav-link no-underline">
-              {l.label}
-            </a>
-          ))}
-        </div>
-        <a
-          ref={mark}
-          href="#top"
-          aria-label="ikigai — back to top"
-          className="t-wordmark-nav col-start-2 no-underline transition-opacity duration-400 motion-reduce:transition-none"
-        >
-          ikigai
-        </a>
+        <div className="hidden flex-wrap gap-x-8 gap-y-2 sm:flex">{LEFT.map(link)}</div>
+
+        <Link href="/" aria-label="ikigai tea bar — home" className="col-start-2 no-underline">
+          <Wordmark />
+        </Link>
+
         <div className="col-start-3 hidden flex-wrap justify-end gap-x-8 gap-y-2 sm:flex">
-          {RIGHT.map((l) => (
-            <a key={l.href} href={l.href} className="t-nav-link no-underline">
-              {l.label}
-            </a>
-          ))}
+          {RIGHT.map(link)}
         </div>
 
+        {/* Not "menu": the site deliberately has no food menu on it. */}
         <button
           type="button"
           onClick={() => setMenuOpen(true)}
@@ -112,7 +128,7 @@ export default function Nav() {
           aria-controls="mobile-menu"
           className="t-nav-link col-start-3 cursor-pointer justify-self-end sm:hidden"
         >
-          Menu
+          index
         </button>
       </nav>
 
@@ -121,30 +137,30 @@ export default function Nav() {
           id="mobile-menu"
           role="dialog"
           aria-modal="true"
-          aria-label="Menu"
-          className="fixed inset-0 z-250 flex flex-col bg-cream px-[var(--section-x-narrow)] py-5 text-matcha-deep sm:hidden"
+          aria-label="Pages"
+          className="fixed inset-0 z-250 flex flex-col bg-cream px-[var(--section-x-narrow)] py-4 text-matcha-deep sm:hidden"
         >
           <div className="flex items-center justify-between">
-            <span className="t-wordmark-nav">ikigai</span>
+            <Wordmark className="text-left" />
             <button
               type="button"
               autoFocus
               onClick={() => setMenuOpen(false)}
               className="t-nav-link cursor-pointer"
             >
-              Close
+              close
             </button>
           </div>
           <div className="mt-16 flex flex-col gap-6">
             {LINKS.map((l) => (
-              <a
+              <Link
                 key={l.href}
                 href={l.href}
                 onClick={() => setMenuOpen(false)}
                 className="t-editorial not-italic no-underline"
               >
                 {l.label}
-              </a>
+              </Link>
             ))}
           </div>
         </div>

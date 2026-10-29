@@ -26,6 +26,9 @@ straight to the node. `prefers-reduced-motion: reduce` shows every end state and
 
 ## Before launch
 
+Placeholder copy for the four new pages lives in `src/content/` and every invented fact is
+listed in [CONTENT-TO-CONFIRM.md](CONTENT-TO-CONFIRM.md). Nothing there is true yet.
+
 - **Photography** is Pexels placeholder. Replace it and drop `images.pexels.com` from
   `next.config.ts`, then remove the "Images" section of the privacy page.
 - **Event videos** have no files yet. `ArchiveEvent.video` is wired to a `<video poster>` in the

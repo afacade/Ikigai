@@ -11,7 +11,7 @@ export default function ComingUp() {
     <section className="bg-beige px-[var(--section-x)] py-[clamp(80px,10vw,130px)]">
       <div className="mx-auto max-w-[1100px]">
         <h2 data-reveal className="t-h2-upcoming mb-10">
-          Coming <span className="italic text-matcha">up</span>
+          coming <span className="italic text-matcha">up</span>
         </h2>
 
         {UPCOMING.map((u) => (

@@ -31,7 +31,7 @@ export default function PrivacyPage() {
       <p>
         [Legal entity name]
         <br />
-        {SITE.street}, {SITE.city}, Germany
+        {SITE.legalStreet}, {SITE.legalCity}, Germany
         <br />
         <a href={`mailto:${SITE.email}`}>{SITE.email}</a>
       </p>
