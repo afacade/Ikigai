@@ -4,6 +4,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useEffect, useRef } from 'react';
 import type { ArchiveEvent } from '@/content/types';
+import { asset } from '@/lib/asset';
 
 /**
  * The detail window. Closes on backdrop click and on Escape, and moves focus to
@@ -72,10 +73,10 @@ export default function EventModal({
                 controls
                 playsInline
                 preload="metadata"
-                poster={event.src}
+                poster={asset(event.src)}
                 className="absolute inset-0 h-full w-full object-cover"
               >
-                <source src={event.video} />
+                <source src={asset(event.video)} />
               </video>
             ) : (
               <Image

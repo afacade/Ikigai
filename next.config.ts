@@ -10,6 +10,12 @@ const isPages = process.env.GITHUB_PAGES === 'true';
 const nextConfig: NextConfig = {
   // There is an unrelated lockfile above this directory; pin the trace root.
   outputFileTracingRoot: __dirname,
+  // Exposed to the client so plain-HTML asset refs (e.g. the <video> in the
+  // event modal, which next/image's automatic basePath does not cover) can be
+  // prefixed. See src/lib/asset.ts.
+  env: {
+    NEXT_PUBLIC_BASE_PATH: isPages ? '/Ikigai' : '',
+  },
   ...(isPages
     ? {
         output: 'export',

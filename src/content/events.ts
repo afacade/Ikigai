@@ -11,7 +11,13 @@ export const CATEGORIES: EventCategory[] = [
 const pexels = (id: number) =>
   `https://images.pexels.com/photos/${id}/pexels-photo-${id}.jpeg?auto=compress&cs=tinysrgb&w=1600`;
 
-/** Placeholder archive, lower case per the client's note of 27 Oct. */
+/**
+ * Event archive, lower case per the client's note of 27 Oct. Workshops, pop-ups
+ * and bakery/collab cards now use the client's own media from `public/images`
+ * and `public/videos`; the run-club and chess cards stay on Pexels placeholders
+ * until that photography exists. Titles and dates remain placeholder copy — see
+ * CONTENT-TO-CONFIRM.md.
+ */
 export const EVENTS: ArchiveEvent[] = [
   {
     id: 'w1',
@@ -22,7 +28,7 @@ export const EVENTS: ArchiveEvent[] = [
     file: 'matcha101.jpg',
     line: 'whisking basics for first-timers, from sifting to the perfect foam.',
     guests: '24 guests',
-    src: pexels(5946632),
+    src: '/images/event-matcha101.jpg',
     alt: 'hands whisking matcha at a workshop table',
     x: 16,
     y: 5,
@@ -38,6 +44,8 @@ export const EVENTS: ArchiveEvent[] = [
     file: 'runclub_sunday.mov',
     line: 'a slow loop through mitte, then the whole crew takes over the bar.',
     guests: '60+ runners',
+    // Stock placeholder: no run-club media yet, so no `video` and the modal
+    // shows this poster only.
     src: pexels(17789703),
     alt: 'runners setting off on a city street',
     x: 36,
@@ -54,6 +62,7 @@ export const EVENTS: ArchiveEvent[] = [
     file: 'chess_night.jpg',
     line: 'boards on every table, beginners welcome, hojicha on refill.',
     guests: '40 players',
+    // Stock placeholder: no chess photography yet.
     src: pexels(6817705),
     alt: 'chess pieces mid-game on a wooden board',
     x: 57,
@@ -70,8 +79,9 @@ export const EVENTS: ArchiveEvent[] = [
     file: 'croissant_day.mov',
     line: 'a one-day pastry with a neighbourhood bakery. gone by 2 pm.',
     guests: '300 croissants',
-    src: pexels(30593915),
-    alt: 'fresh croissants cooling on a rack',
+    src: '/images/event-cake.jpg',
+    alt: 'a matcha cake finished by hand in the kitchen',
+    video: '/videos/bakery-collab.mp4',
     x: 79,
     y: 3,
     rot: 4,
@@ -86,8 +96,8 @@ export const EVENTS: ArchiveEvent[] = [
     file: 'ceramics_popup.jpg',
     line: 'local potters, handmade chawan and a full house all weekend.',
     guests: '2 days',
-    src: pexels(8474082),
-    alt: 'handmade ceramic bowls on a shelf',
+    src: '/images/event-ceramics.jpg',
+    alt: 'handmade ceramic bowls from the pottery pop-up',
     x: 22,
     y: 42,
     rot: 3,
@@ -102,7 +112,7 @@ export const EVENTS: ArchiveEvent[] = [
     file: 'team_ceremony.jpg',
     line: 'a private session for a company offsite — whisks, stories, no slides.',
     guests: '30 guests',
-    src: pexels(8329642),
+    src: '/images/event-ceremony.jpg',
     alt: 'a bowl of whisked matcha seen from above',
     x: 44,
     y: 38,
@@ -118,6 +128,7 @@ export const EVENTS: ArchiveEvent[] = [
     file: 'runclub_1year.mov',
     line: 'one year of sundays, celebrated with one very long table.',
     guests: '180 runners',
+    // Stock placeholder: no run-club media yet, so no `video`.
     src: pexels(29684376),
     alt: 'a long table set for a crowd',
     x: 66,
@@ -134,6 +145,7 @@ export const EVENTS: ArchiveEvent[] = [
     file: 'blitz_tourney.jpg',
     line: 'three-minute games, loud cheering, a matcha-green trophy.',
     guests: '32 players',
+    // Stock placeholder: no chess photography yet.
     src: pexels(6817705),
     alt: 'players concentrating over a chess board',
     x: 17,
@@ -150,8 +162,9 @@ export const EVENTS: ArchiveEvent[] = [
     file: 'brand_launch.mov',
     line: 'launch evening with tastings, a dj and a custom drink.',
     guests: '120 guests',
-    src: pexels(28730004),
-    alt: 'evening event with warm lighting',
+    src: '/images/event-launch.jpg',
+    alt: 'guests with matcha drinks at an evening launch',
+    video: '/videos/brand-launch.mp4',
     x: 37,
     y: 71,
     rot: 3,
@@ -166,8 +179,8 @@ export const EVENTS: ArchiveEvent[] = [
     file: 'hojicha_buns.jpg',
     line: 'roasted-tea cinnamon buns baked together with our bakery friends.',
     guests: '2 days',
-    src: pexels(32972501),
-    alt: 'matcha being poured over milk',
+    src: '/images/event-food.jpg',
+    alt: 'a slice of matcha cake on the counter',
     x: 80,
     y: 68,
     rot: -3,
