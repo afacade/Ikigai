@@ -47,9 +47,15 @@ cut the `price` field — the layout holds without it.
 
 ## Still outstanding from the original handoff
 
-- Real photography. Everything is a Pexels placeholder.
-- Event video files. `ArchiveEvent.video` is wired up and unset; drop files in `public/videos/` and
-  fill the field. The client asked for "all photos + some videos" on the events page.
+- Real photography — mostly done. The client's own images now fill the home, our-matcha, book-us
+  and events-archive slots (`public/images/`). **Still on Pexels placeholders:** the run club and
+  chess subjects (home intro circles + the `run club` / `chess club` event cards) — no run-club or
+  chess photography exists in the asset set yet. Replace when it does.
+- Event videos — two added (`public/videos/bakery-collab.mp4`, `brand-launch.mp4`) on the bakery and
+  pop-up cards. The two run-club video cards have no `video` yet (see above) and fall back to their
+  poster. Source clips are trimmed to ~14s, muted, 720p.
+- Event archive titles/dates (`events.ts`) are still placeholder copy; only the media was replaced,
+  so e.g. "matcha croissant day" now shows a matcha cake. Align the copy with the real events.
 - Drink prices (`drinks.ts`) are no longer rendered anywhere. The file stays until they confirm
   prices are never coming back.
 - Booking flow for "save a spot" on upcoming events — still points at Instagram.
