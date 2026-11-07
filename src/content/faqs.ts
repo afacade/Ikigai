@@ -22,23 +22,23 @@ export const FAQS: FaqGroup[] = [
     items: [
       {
         q: 'do you take reservations?',
-        a: 'no — walk in any day of the week. the only thing we book out is the whole space, and that lives on the book us page.',
+        a: 'no, you can just walk in, any day of the week. the only thing we book out is the whole space, and that lives on the book us page.',
       },
       {
         q: 'can i work from here?',
-        a: 'mornings, yes, and the wifi is free — ask at the bar for the password. we ask for laptops away after 17:00 on weekdays and all day sunday. that is when the room gets loud, which is the point of it.',
+        a: 'mornings, yes, and the wifi is free. ask at the bar for the password. we do ask for laptops away after 17:00 on weekdays and all day sunday, because that’s when the room gets loud. which is rather the point of it.',
       },
       {
         q: 'how do i pay?',
-        a: 'card and phone, from the first euro. we don’t take cash.',
+        a: 'you can pay by card or phone from the first euro. we don’t take cash.',
       },
       {
         q: 'is the space step-free?',
-        a: 'there is one step at the door. past it the room and the toilet are level. say hello and we will give you a hand with the step.',
+        a: 'there’s one step at the door. past it, the room and the toilet are level. say hello and we’ll give you a hand with it.',
       },
       {
         q: 'can i bring my dog?',
-        a: 'yes, if they are calm with a full room. there is water by the door.',
+        a: 'yes, if they’re calm in a full room. there’s water by the door.',
       },
     ],
   },
@@ -47,27 +47,27 @@ export const FAQS: FaqGroup[] = [
     items: [
       {
         q: 'what makes it ceremonial grade?',
-        a: 'first-harvest leaves from one farm in uji, shaded before picking and stone-ground slowly. it is sweeter and less astringent than culinary grade, which is why we whisk it rather than bake with it.',
+        a: 'the leaves are first harvest from one farm in uji, shaded before picking and ground slowly. it’s sweeter and less astringent than culinary grade, which is why we whisk it rather than bake with it.',
       },
       {
         q: 'how much caffeine is in a matcha?',
-        a: 'a latte sits around 60–70mg, so about a single espresso, but it arrives more slowly and leaves more slowly. hojicha is closer to 20mg if you want the taste without the lift.',
+        a: 'a latte sits around 60–70mg, so about a single espresso, though it comes on more gently and lasts longer. hojicha is closer to 20mg.',
       },
       {
         q: 'what milk do you have?',
-        a: 'oat by default. whole and almond on request, at no extra charge.',
+        a: 'oat is the default, and whole or almond cost nothing extra if you ask.',
       },
       {
         q: 'do you have anything without caffeine?',
-        a: 'genmaicha and a seasonal herbal pot, both decaf-ish rather than decaf. ask us and we will point you at the gentlest thing on the counter.',
+        a: 'there is genmaicha and a seasonal herbal pot, though both are decaf-ish rather than properly decaf. ask us and we’ll point you at the gentlest thing on the counter.',
       },
       {
         q: 'can i buy matcha to take home?',
-        a: 'yes — the same 30g tin we use behind the bar, plus whisks, sifters and bowls from the potters we host at pop-ups.',
+        a: 'yes, we sell the same 30g tin we use behind the bar, along with whisks, sifters and bowls from the potters we host at pop-ups.',
       },
       {
         q: 'are there allergens i should know about?',
-        a: 'the pastries come from [bakery name] and contain gluten, egg and nuts; they are made in a kitchen that handles all three. tell us what you are avoiding and we will read you the list.',
+        a: 'the pastries come from [bakery name] and contain gluten, egg and nuts. they’re made in a kitchen that handles all three. tell us what you’re avoiding and we’ll read you the list.',
       },
     ],
   },
@@ -76,15 +76,15 @@ export const FAQS: FaqGroup[] = [
     items: [
       {
         q: 'how do i join the run club?',
-        a: 'sundays at 10:00, meet at the door. 5k, slow on purpose, no sign-up and no fee. an iced matcha afterwards comes with it.',
+        a: 'we meet at the door on sundays at 10:00 and run 5k, deliberately slowly. there is no sign-up and no fee, and an iced matcha afterwards comes with it.',
       },
       {
         q: 'and the chess club?',
-        a: 'thursdays from 18:00. boards are here, all levels are welcome, and nobody minds explaining. no entry fee.',
+        a: 'we start at 18:00 on thursdays and the boards are already out. all levels turn up, and nobody minds explaining the rules. there is no entry fee.',
       },
       {
         q: 'where do you announce things?',
-        a: 'instagram first, then the newsletter — one email a month, events first. the coming up list on this site is the same calendar.',
+        a: 'instagram first, then the newsletter, which is one email a month. the coming up list on this site is the same calendar.',
       },
       {
         q: 'can i host something here?',

@@ -17,8 +17,9 @@ interface Point {
  *
  * Dragging writes left/top straight to the node and only commits to state on
  * release. If the pointer travels less than 4px it was a click, and the file
- * opens instead — that one threshold is what lets the title bar be both a
- * handle and a button.
+ * opens instead — that one threshold is what lets the whole window be both a
+ * handle and a button. A cancelled gesture (the browser taking over to pan the
+ * page) keeps any movement but never counts as a click.
  */
 export default function Board({
   filter,
@@ -69,17 +70,25 @@ export default function Board({
       win.style.top = `${next.y}%`;
     };
 
-    const up = () => {
+    const stop = () => {
       window.removeEventListener('pointermove', move);
       window.removeEventListener('pointerup', up);
-      window.removeEventListener('pointercancel', up);
+      window.removeEventListener('pointercancel', cancel);
       if (moved) setPositions((prev) => ({ ...prev, [event.id]: next }));
-      else onOpen(event.id);
     };
+
+    const up = () => {
+      const wasDrag = moved;
+      stop();
+      if (!wasDrag) onOpen(event.id);
+    };
+
+    // The browser took the gesture to pan the page: keep the move, open nothing.
+    const cancel = () => stop();
 
     window.addEventListener('pointermove', move);
     window.addEventListener('pointerup', up);
-    window.addEventListener('pointercancel', up);
+    window.addEventListener('pointercancel', cancel);
   };
 
   return (
@@ -110,14 +119,14 @@ export default function Board({
             top={`${p.y}%`}
             z={zOrder[event.id] ?? 2}
             dimmed={!!filter && event.cat !== filter}
-            onBarPointerDown={(e) => startDrag(e, event)}
+            onDragStart={(e) => startDrag(e, event)}
             onOpen={() => onOpen(event.id)}
           />
         );
       })}
 
       <p className="t-mono-hint pointer-events-none absolute bottom-3.5 right-[18px] m-0 text-on-dark-300">
-        drag by the bar · click the bar to open · folders filter
+        drag a file to move it · click to open · folders filter
       </p>
     </div>
   );

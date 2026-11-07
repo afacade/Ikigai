@@ -24,7 +24,7 @@ export default function PrivacyPage() {
   return (
     <LegalPage title="Privacy">
       <p className="t-caption text-wood">
-        Placeholder — to be completed by the client before launch. Required by Art. 13 GDPR.
+        Placeholder, to be completed by the client before launch. Required by Art. 13 GDPR.
       </p>
 
       <h2>Controller</h2>
@@ -83,7 +83,7 @@ export default function PrivacyPage() {
       <p>
         You have the right to access, rectification, erasure, restriction of processing, data
         portability and objection, and the right to lodge a complaint with a supervisory
-        authority — for Berlin, the Berliner Beauftragte für Datenschutz und Informationsfreiheit.
+        authority. For Berlin, that is the Berliner Beauftragte für Datenschutz und Informationsfreiheit.
       </p>
     </LegalPage>
   );

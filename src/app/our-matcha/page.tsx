@@ -6,7 +6,7 @@ import { MATCHA_EYEBROW, MATCHA_HEADING } from '@/content/matcha';
 export const metadata: Metadata = {
   title: 'our matcha',
   description:
-    'ceremonial-grade matcha from one family farm in uji, stone-ground in small batches and whisked to order.',
+    'our matcha comes from one family farm in uji, stone-ground in small batches and whisked when you order it.',
 };
 
 export default function OurMatchaPage() {

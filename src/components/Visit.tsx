@@ -32,16 +32,17 @@ export default function Visit() {
             ikigai
           </div>
           <h2 data-reveal className="t-h2-visit mt-7">
-            more than a café,
+            this is more than a café.
             <br />
-            <span className="italic">a place to belong.</span>
+            <span className="italic">it is a room you can settle into.</span>
           </h2>
 
           <div data-reveal className="t-eyebrow mt-12">
             where to find us
           </div>
           <p data-reveal className="t-body-visit m-0 mt-[18px] max-w-[460px]">
-            a few minutes from stadtmitte. walk in any day of the week — no reservation, no rush.
+            we are a few minutes from stadtmitte, and you can walk in any day of the week without
+            booking.
           </p>
 
           <div data-reveal className="t-editorial mt-6 flex flex-wrap gap-x-8 gap-y-3">

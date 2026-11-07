@@ -12,19 +12,19 @@ const TEASERS = [
   {
     href: '/our-matcha',
     label: 'our matcha',
-    line: 'one farm in uji, stone-ground, whisked by hand to order.',
+    line: 'it all comes from one farm in uji, and we whisk every bowl by hand.',
     photo: DRINKS_PHOTO,
   },
   {
     href: '/events',
     label: 'events',
-    line: 'workshops, run club, chess nights and the odd pop-up.',
+    line: 'we run workshops and two clubs most weeks, plus the odd pop-up.',
     photo: { src: EVENTS[1].src, alt: EVENTS[1].alt },
   },
   {
     href: '/book-us',
     label: 'book us',
-    line: 'take the room for a workshop, a launch or a long table.',
+    line: 'you can take the whole room for an evening, whatever you want to put in it.',
     photo: HOST_PHOTOS[0],
   },
 ];

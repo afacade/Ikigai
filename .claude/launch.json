@@ -3,7 +3,7 @@
   "configurations": [
     {
       "name": "ikigai-dev",
-      "runtimeExecutable": "npm.cmd",
+      "runtimeExecutable": "npm",
       "runtimeArgs": ["run", "dev"],
       "port": 3000
     }

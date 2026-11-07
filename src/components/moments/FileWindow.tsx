@@ -4,9 +4,16 @@ import type { ArchiveEvent } from '@/content/types';
 /**
  * A past event as a file on the board.
  *
- * The title bar is both the drag handle and the open button: the pointer logic
- * lives in Board, and `open ↗` is a real button so the modal is reachable from
+ * The whole window is the drag handle and the open button: press anywhere,
+ * drag to move it, release without travelling and it opens. The pointer logic
+ * lives in Board. `open ↗` stays a real button so the modal is reachable from
  * the keyboard too.
+ *
+ * Touch action differs by region on purpose. The title bar takes the gesture
+ * outright (`touch-none`) so a file can be dragged in any direction by its bar.
+ * Over the picture the browser keeps vertical panning, so a thumb swiping down
+ * the page scrolls instead of dragging the file — that pan fires pointercancel,
+ * which Board treats as "not a click".
  */
 export default function FileWindow({
   event,
@@ -14,7 +21,7 @@ export default function FileWindow({
   top,
   z,
   dimmed,
-  onBarPointerDown,
+  onDragStart,
   onOpen,
 }: {
   event: ArchiveEvent;
@@ -22,21 +29,19 @@ export default function FileWindow({
   top: string;
   z: number;
   dimmed: boolean;
-  onBarPointerDown: (e: React.PointerEvent) => void;
+  onDragStart: (e: React.PointerEvent) => void;
   onOpen: () => void;
 }) {
   return (
     <div
       data-file
+      onPointerDown={onDragStart}
       style={{ left, top, zIndex: z, transform: `rotate(${event.rot}deg)` }}
-      className={`absolute w-[clamp(150px,14.5vw,210px)] overflow-hidden rounded-lg bg-window-body shadow-[var(--shadow-window)] transition-opacity duration-250 motion-reduce:transition-none ${
+      className={`absolute w-[clamp(150px,14.5vw,210px)] cursor-grab select-none overflow-hidden rounded-lg bg-window-body shadow-[var(--shadow-window)] transition-opacity duration-250 active:cursor-grabbing motion-reduce:transition-none ${
         dimmed ? 'opacity-[0.22]' : 'opacity-100'
       }`}
     >
-      <div
-        onPointerDown={onBarPointerDown}
-        className="flex cursor-grab touch-none select-none items-center justify-between gap-1.5 bg-window-chrome px-[9px] py-1.5 text-ink"
-      >
+      <div className="flex touch-none items-center justify-between gap-1.5 bg-window-chrome px-[9px] py-1.5 text-ink">
         <span className="t-mono-file overflow-hidden text-ellipsis whitespace-nowrap">
           {event.file}
         </span>
@@ -49,8 +54,15 @@ export default function FileWindow({
           open ↗<span className="sr-only"> {event.title}</span>
         </button>
       </div>
-      <div className="relative" style={{ aspectRatio: event.ratio }}>
-        <Image src={event.src} alt={event.alt} fill sizes="210px" className="object-cover" />
+      <div className="relative touch-pan-y" style={{ aspectRatio: event.ratio }}>
+        <Image
+          src={event.src}
+          alt={event.alt}
+          fill
+          sizes="210px"
+          draggable={false}
+          className="object-cover"
+        />
         {event.media === 'video' && (
           <span
             aria-hidden

@@ -19,7 +19,7 @@ export default function ImprintPage() {
   return (
     <LegalPage title="Imprint">
       <p className="t-caption text-wood">
-        Placeholder — to be completed by the client before launch. Required by § 5 DDG and § 18
+        Placeholder, to be completed by the client before launch. Required by § 5 DDG and § 18
         MStV.
       </p>
 

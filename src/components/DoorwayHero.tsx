@@ -28,8 +28,16 @@ export default function DoorwayHero() {
     const e = easeInOutQuad(p);
 
     if (img.current) {
-      const w0 = Math.min(440, vw * 0.7);
-      const h0 = Math.min(600, vh * 0.72);
+      // On a phone the arch has to leave the top of the screen free: the
+      // headline and the lead sit above it on the paper, not over the picture.
+      // The third term is what keeps that true on a short screen, where 46vh
+      // alone would still reach up into the lead: the copy runs to about 350px
+      // whatever the viewport height is, so the arch gives way instead.
+      const narrow = vw < 640;
+      const w0 = Math.min(440, vw * (narrow ? 0.78 : 0.7));
+      const h0 = narrow
+        ? Math.min(600, vh * 0.46, Math.max(160, vh - 380))
+        : Math.min(600, vh * 0.72);
       const w = w0 + (vw - w0) * e;
       const h = h0 + (vh - h0) * e;
       const rad = (w0 / 2) * (1 - e);
@@ -53,14 +61,9 @@ export default function DoorwayHero() {
   return (
     <header ref={hero} id="top" className="hero relative h-[280vh] bg-paper text-ink">
       <div className="sticky top-0 h-screen overflow-hidden">
-        <div
-          ref={img}
-          className="hero-img absolute inset-0"
-          style={{
-            clipPath:
-              'inset(28% calc(50% - 220px) 0 calc(50% - 220px) round 220px 220px 0 0)',
-          }}
-        >
+        {/* The p = 0 arch for the first paint lives in globals.css, where a
+            media query can mirror the two w0/h0 pairs above. */}
+        <div ref={img} className="hero-img absolute inset-0">
           <Image
             src={DOORWAY.src}
             alt={DOORWAY.alt}
@@ -73,7 +76,7 @@ export default function DoorwayHero() {
 
         <div
           data-fade
-          className="hero-fade t-hero pointer-events-none absolute left-[clamp(20px,5vw,64px)] top-[clamp(170px,32vh,280px)]"
+          className="hero-fade t-hero pointer-events-none absolute left-[clamp(20px,5vw,64px)] top-[clamp(88px,13vh,170px)] sm:top-[clamp(170px,32vh,280px)]"
         >
           come
           <br />
@@ -90,10 +93,10 @@ export default function DoorwayHero() {
 
         <p
           data-fade
-          className="hero-fade t-body-sm pointer-events-none absolute bottom-14 right-[clamp(20px,5vw,64px)] m-0 max-w-[270px]"
+          className="hero-fade t-body-sm pointer-events-none absolute left-[clamp(20px,5vw,64px)] top-[clamp(240px,32vh,320px)] m-0 max-w-[min(280px,62vw)] sm:bottom-14 sm:left-auto sm:right-[clamp(20px,5vw,64px)] sm:top-auto sm:max-w-[270px]"
         >
-          a matcha tea bar and a third place in berlin mitte. run club on sundays, chess on
-          thursdays, a seat for you any day.
+          we are a matcha tea bar in berlin mitte. there is run club on sundays and chess on
+          thursdays.
         </p>
 
         <div

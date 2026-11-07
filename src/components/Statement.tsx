@@ -16,12 +16,12 @@ export default function Statement() {
       </div>
 
       <h2 data-reveal className="t-h2 mx-auto mt-6 max-w-[1100px]">
-        come for the matcha. stay for the people.
+        come for the matcha. most people end up staying for the room.
       </h2>
 
       <p data-reveal className="t-body-lg mx-auto mt-7 max-w-[560px]">
-        stone-ground matcha, a long wooden table and a calendar full of things to do together.
-        whoever you are, there&rsquo;s a seat for you.
+        the matcha is stone-ground and the table is long enough that you will end up next to
+        someone. whoever you are, pull up a chair.
       </p>
 
       <div data-reveal className="mt-10 flex flex-wrap justify-center gap-[14px]">

@@ -112,7 +112,7 @@ export default function Nav() {
       >
         <div className="hidden flex-wrap gap-x-8 gap-y-2 sm:flex">{LEFT.map(link)}</div>
 
-        <Link href="/" aria-label="ikigai tea bar — home" className="col-start-2 no-underline">
+        <Link href="/" aria-label="ikigai tea bar, home" className="col-start-2 no-underline">
           <Wordmark />
         </Link>
 

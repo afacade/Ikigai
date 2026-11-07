@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useLayoutEffect, useRef, useState } from 'react';
 import { CATEGORIES, EVENTS } from '@/content/events';
 import type { EventCategory } from '@/content/types';
 import Board from './Board';
@@ -10,11 +10,19 @@ import EventModal from './EventModal';
 const LIST_BELOW = 760;
 
 /**
+ * Measuring has to happen before the browser paints, or a phone shows a frame
+ * of the board — which at that width is a pile of files cut off by the board's
+ * own overflow — before the grid replaces it. On the server there is nothing to
+ * measure and useLayoutEffect would warn, so fall back to useEffect there.
+ */
+const useMeasureEffect = typeof window === 'undefined' ? useEffect : useLayoutEffect;
+
+/**
  * The event portfolio.
  *
  * Two views of one data set: a draggable desktop board, and a filtered card
- * grid. The grid is forced below 760px of *container* width — measured with a
- * ResizeObserver, not a media query, because the board's room is what matters.
+ * grid. The grid is forced below 760px of *container* width — the board's room
+ * is what matters, not the viewport's.
  */
 export default function Moments() {
   const wrap = useRef<HTMLDivElement>(null);
@@ -23,14 +31,28 @@ export default function Moments() {
   const [filter, setFilter] = useState<EventCategory | null>(null);
   const [openId, setOpenId] = useState<string | null>(null);
 
-  useEffect(() => {
+  useMeasureEffect(() => {
     const el = wrap.current;
-    if (!el || typeof ResizeObserver === 'undefined') return;
-    const ro = new ResizeObserver(([entry]) => {
-      setNarrow(entry.contentRect.width < LIST_BELOW);
-    });
-    ro.observe(el);
-    return () => ro.disconnect();
+    if (!el) return;
+
+    // Read the width directly rather than waiting to be told it. A
+    // ResizeObserver only delivers at the end of a rendered frame, and a page
+    // that is not being rendered — a background tab, a hidden panel — never
+    // gets one, which used to leave the board up at any width.
+    const measure = () => setNarrow(el.getBoundingClientRect().width < LIST_BELOW);
+    measure();
+
+    // The observer is still what catches the container changing width without
+    // the window doing so; the resize listener covers it while frames are scarce.
+    const ro =
+      typeof ResizeObserver === 'undefined' ? null : new ResizeObserver(measure);
+    ro?.observe(el);
+    window.addEventListener('resize', measure);
+
+    return () => {
+      ro?.disconnect();
+      window.removeEventListener('resize', measure);
+    };
   }, []);
 
   const desktop = view === 'desktop' && !narrow;

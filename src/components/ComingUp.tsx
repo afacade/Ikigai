@@ -3,6 +3,10 @@ import { UPCOMING } from '@/content/upcoming';
 /**
  * The only forward-looking section. With nothing in the calendar it renders
  * nothing — better than an empty state.
+ *
+ * A row is one column on a phone — date, event, then the link. There is only
+ * room for the three-column row from 640px up; below that the title column
+ * narrows until it sets one word per line.
  */
 export default function ComingUp() {
   if (UPCOMING.length === 0) return null;
@@ -18,11 +22,13 @@ export default function ComingUp() {
           <div
             data-reveal
             key={`${u.day}-${u.title}`}
-            className="grid grid-cols-[minmax(80px,130px)_minmax(0,1fr)_auto] items-center gap-x-7 gap-y-4 border-t-[1.5px] border-ink py-[26px]"
+            className="grid grid-cols-1 items-start gap-x-7 gap-y-4 border-t-[1.5px] border-ink py-[26px] sm:grid-cols-[minmax(80px,130px)_minmax(0,1fr)_auto] sm:items-center"
           >
-            <div>
-              <span className="t-numeral-day block">{u.day}</span>
-              <span className="t-mono-hint mt-1.5 block tracking-[.1em] text-wood">{u.mon}</span>
+            <div className="flex items-baseline gap-3 sm:block">
+              <span className="t-numeral-day">{u.day}</span>
+              <span className="t-mono-hint tracking-[.1em] text-wood sm:mt-1.5 sm:block">
+                {u.mon}
+              </span>
             </div>
             <div>
               <div className="t-upcoming-title">{u.title}</div>
@@ -32,7 +38,7 @@ export default function ComingUp() {
               href={u.href}
               target="_blank"
               rel="noreferrer"
-              className="pill pill-outline-ink"
+              className="pill pill-outline-ink justify-self-start"
             >
               save a spot
               <span className="sr-only"> for {u.title}</span>

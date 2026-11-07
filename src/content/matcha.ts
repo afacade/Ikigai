@@ -14,8 +14,8 @@ export const MATCHA_EYEBROW = 'from uji, whisked here';
 export const MATCHA_HEADING = 'one tea,\ndone properly.';
 
 export const MATCHA_INTRO =
-  'we serve one thing seriously. ceremonial-grade matcha from a single family farm in uji, ' +
-  'stone-ground in small batches and whisked to order — never pre-mixed, never sitting in a jug ' +
+  'we only really serve one thing. it is ceremonial-grade matcha from a single family farm in ' +
+  'uji, stone-ground in small batches and whisked when you order it. nothing sits in a jug ' +
   'waiting for you.';
 
 export const MATCHA_BLOCKS: MatchaBlock[] = [
@@ -23,32 +23,33 @@ export const MATCHA_BLOCKS: MatchaBlock[] = [
     label: 'where it comes from',
     heading: 'one farm, twice a year',
     body:
-      'our tea comes from [farm name], a third-generation farm in uji, kyoto. first-harvest ' +
-      'leaves, shaded for about three weeks before picking, then stone-ground slowly enough that ' +
-      'the powder never warms up. we buy twice a year and keep it cold until it goes in the bowl.',
+      'our tea comes from [farm name], a third-generation farm in uji, kyoto. they shade the first ' +
+      'harvest for about three weeks before picking it, then grind it slowly enough that the ' +
+      'powder never warms up. we buy twice a year and keep it cold until it goes in the bowl.',
   },
   {
     label: 'how we whisk it',
     heading: 'ninety seconds, by hand',
     body:
-      'sifted first, so there are no lumps to hide. water just off the boil, rested to about 80°c ' +
-      '— hotter than that and it turns bitter. then a bamboo whisk, by hand, until the foam holds. ' +
-      'about ninety seconds from your order to your cup.',
+      'we sift it first so you don’t get lumps. the water goes on just off the boil and rests to ' +
+      'about 80°c, because anything hotter turns it bitter. then it is whisked by hand until the ' +
+      'foam holds, which takes about ninety seconds.',
   },
   {
     label: 'what to drink',
     heading: 'start where you like',
     body:
-      'new to matcha: have it as a latte, oat by default, whole and almond on request. want the ' +
-      'tea itself: order usucha, which is matcha and water and nowhere to hide. want the taste ' +
-      'without the lift: hojicha is roasted, toasty and low in caffeine.',
+      'new to matcha? start with a latte. we pour it with oat unless you ask for something else. ' +
+      'if you want the tea on its own, order usucha. and hojicha is the one to get when you like ' +
+      'the taste but not what the caffeine does to you.',
   },
   {
     label: 'take some home',
     heading: 'the same tin we use',
     body:
-      'we sell the tin we pull from behind the bar, 30g, enough for about twenty bowls. whisks, ' +
-      'sifters and chawan too — most of the bowls are made by the potters we host at pop-ups.',
+      'we sell the same 30g tin we pull from behind the bar, which is enough for about twenty ' +
+      'bowls. we also keep whisks, sifters and chawan, and most of the bowls come from potters ' +
+      'we’ve hosted at pop-ups.',
   },
 ];
 
@@ -57,7 +58,7 @@ export const DELIVERY = {
   label: 'can’t make it in',
   heading: 'we’re on wolt',
   body:
-    'delivery across [delivery areas], every day we’re open. lattes travel better than you would ' +
-    'think — we whisk them the same way and send them iced.',
+    'we deliver across [delivery areas] every day we’re open. the lattes are whisked the same ' +
+    'way and sent iced, which holds up better than you’d expect.',
   cta: 'order on wolt →',
 };

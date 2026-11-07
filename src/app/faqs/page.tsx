@@ -6,7 +6,7 @@ import { FAQ_EYEBROW, FAQ_HEADING } from '@/content/faqs';
 export const metadata: Metadata = {
   title: 'faqs',
   description:
-    'opening hours, reservations, milk, caffeine, dogs, the run club and the chess club — answered.',
+    'we have answered the usual questions about opening hours, reservations, milk, caffeine, dogs and both clubs.',
 };
 
 export default function FaqsPage() {

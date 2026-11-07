@@ -15,7 +15,7 @@ export default function Newsletter() {
 
   return (
     <div data-reveal className="mt-14 border-t border-[var(--hairline-cream)] pt-8">
-      <div className="t-eyebrow">stay in the loop</div>
+      <div className="t-eyebrow">dates in your inbox</div>
 
       {subscribed ? (
         <div className="t-aside mt-4" role="status">
@@ -48,7 +48,9 @@ export default function Newsletter() {
         </form>
       )}
 
-      <p className="t-fine m-0 mt-3 text-matcha-text-2">one email a month. events first.</p>
+      <p className="t-fine m-0 mt-3 text-matcha-text-2">
+        we send one email a month and it is mostly dates.
+      </p>
     </div>
   );
 }

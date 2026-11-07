@@ -6,7 +6,7 @@ import Moments from '@/components/moments/Moments';
 export const metadata: Metadata = {
   title: 'events',
   description:
-    'workshops, run club, chess nights, pop-ups and bakery collabs — everything we have hosted, and what is coming up.',
+    'everything we have hosted, from workshops and run club to chess nights, pop-ups and bakery collabs, plus what is coming up next.',
 };
 
 export default function EventsPage() {
@@ -15,7 +15,7 @@ export default function EventsPage() {
       <PageHeader
         eyebrow="the archive"
         title={'everything we\nhave hosted.'}
-        lead="run club on sundays, chess on thursdays, and the workshops, pop-ups and collabs in between. drag the files around — they open."
+        lead="there is run club on sundays and chess on thursdays, with workshops, pop-ups and collabs in between. drag the files around, and click one to open it."
       />
       <Moments />
       <ComingUp />

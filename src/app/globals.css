@@ -408,6 +408,30 @@
   }
 }
 
+/* The hero's p = 0 arch, for the paint before the scroll pass first runs. It
+   mirrors the w0 / h0 in DoorwayHero's pass — half of w0 is the corner radius,
+   so the top of the clip is a semicircle — and the two have to stay in step or
+   the hero jumps on hydration. Phones get a shorter, wider arch so the headline
+   and the lead have the top of the screen to themselves. */
+.hero-img {
+  clip-path: inset(
+    calc(100% - min(600px, 46vh, max(160px, 100vh - 380px)))
+      calc(50% - min(220px, 39vw))
+      0
+      calc(50% - min(220px, 39vw))
+      round min(220px, 39vw) min(220px, 39vw) 0 0
+  );
+}
+
+@media (min-width: 640px) {
+  .hero-img {
+    clip-path: inset(
+      calc(100% - min(600px, 72vh)) calc(50% - min(220px, 35vw)) 0 calc(50% - min(220px, 35vw))
+        round min(220px, 35vw) min(220px, 35vw) 0 0
+    );
+  }
+}
+
 /* The hero's reduced-motion end state: the full-bleed photograph with the late
    line, no arch animation, and no 280vh of scroll with nothing happening in it. */
 @media (prefers-reduced-motion: reduce) {
