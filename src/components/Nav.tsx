@@ -7,8 +7,8 @@ import { clamp, easeInOutQuad, prefersReducedMotion, useScrollPass } from '@/lib
 
 /**
  * The four categories the client asked for, in the order they gave them:
- * our matcha → events → book us → faqs. They read left to right across the
- * top, split around the centred wordmark.
+ * our matcha → events → book us → faqs. They sit together on the left, with the
+ * wordmark on the right.
  */
 const LINKS = [
   { label: 'our matcha', href: '/our-matcha' },
@@ -16,9 +16,6 @@ const LINKS = [
   { label: 'book us', href: '/book-us' },
   { label: 'faqs', href: '/faqs' },
 ];
-
-const LEFT = LINKS.slice(0, 2);
-const RIGHT = LINKS.slice(2);
 
 function Wordmark({ className = '' }: { className?: string }) {
   return (
@@ -96,7 +93,7 @@ export default function Nav() {
         key={l.href}
         href={l.href}
         aria-current={active ? 'page' : undefined}
-        className={`t-nav-link no-underline ${active ? 'underline [text-underline-offset:7px]' : ''}`}
+        className={`t-nav-link text-[14px] no-underline ${active ? 'underline [text-underline-offset:7px]' : ''}`}
       >
         {l.label}
       </Link>
@@ -108,17 +105,9 @@ export default function Nav() {
       <nav
         ref={nav}
         aria-label="Primary"
-        className="fixed inset-x-0 top-0 z-200 grid grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)] items-center gap-5 px-[var(--section-x-narrow)] py-4 text-matcha-deep transition-[background,color,box-shadow] duration-400 motion-reduce:transition-none"
+        className="fixed inset-x-0 top-0 z-200 flex items-center justify-between gap-6 px-[var(--section-x-narrow)] py-4 text-matcha-deep transition-[background,color,box-shadow] duration-400 motion-reduce:transition-none"
       >
-        <div className="hidden flex-wrap gap-x-8 gap-y-2 sm:flex">{LEFT.map(link)}</div>
-
-        <Link href="/" aria-label="ikigai tea bar, home" className="col-start-2 no-underline">
-          <Wordmark />
-        </Link>
-
-        <div className="col-start-3 hidden flex-wrap justify-end gap-x-8 gap-y-2 sm:flex">
-          {RIGHT.map(link)}
-        </div>
+        <div className="hidden flex-wrap gap-x-9 gap-y-2 sm:flex">{LINKS.map(link)}</div>
 
         {/* Not "menu": the site deliberately has no food menu on it. */}
         <button
@@ -126,10 +115,14 @@ export default function Nav() {
           onClick={() => setMenuOpen(true)}
           aria-expanded={menuOpen}
           aria-controls="mobile-menu"
-          className="t-nav-link col-start-3 cursor-pointer justify-self-end sm:hidden"
+          className="t-nav-link cursor-pointer text-[14px] sm:hidden"
         >
           index
         </button>
+
+        <Link href="/" aria-label="ikigai tea bar, home" className="no-underline">
+          <Wordmark />
+        </Link>
       </nav>
 
       {menuOpen && (
