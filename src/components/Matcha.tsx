@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import DessertGallery from '@/components/desserts/DessertGallery';
 import { DELIVERY, MATCHA_BLOCKS, MATCHA_INTRO } from '@/content/matcha';
 import { DRINKS_PHOTO } from '@/content/photos';
 import { SITE } from '@/content/site';
@@ -46,6 +47,8 @@ export default function Matcha() {
           </div>
         </div>
       </section>
+
+      <DessertGallery />
 
       <section className="bg-beige px-[var(--section-x)] py-[clamp(80px,10vw,130px)] text-ink">
         <div data-reveal className="mx-auto max-w-[1100px]">

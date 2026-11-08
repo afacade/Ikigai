@@ -59,6 +59,11 @@ cut the `price` field — the layout holds without it.
 - Drink prices (`drinks.ts`) are no longer rendered anywhere. The file stays until they confirm
   prices are never coming back.
 - Booking flow for "save a spot" on upcoming events — still points at Instagram.
+- Dessert gallery on the our-matcha page (`DessertGallery`, `content/desserts.ts`) —
+  the photos are the client's own (cakes, drinks, savoury food), but the heading,
+  eyebrow and the one-line intro are placeholder copy. Confirm wording, and confirm
+  these dishes are actually on offer, before launch. No dish names or prices by
+  request.
 - Newsletter provider.
 
 ## Decisions, not content

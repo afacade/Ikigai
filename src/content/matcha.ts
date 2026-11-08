@@ -20,14 +20,6 @@ export const MATCHA_INTRO =
 
 export const MATCHA_BLOCKS: MatchaBlock[] = [
   {
-    label: 'where it comes from',
-    heading: 'one farm, twice a year',
-    body:
-      'our tea comes from [farm name], a third-generation farm in uji, kyoto. they shade the first ' +
-      'harvest for about three weeks before picking it, then grind it slowly enough that the ' +
-      'powder never warms up. we buy twice a year and keep it cold until it goes in the bowl.',
-  },
-  {
     label: 'how we whisk it',
     heading: 'ninety seconds, by hand',
     body:
