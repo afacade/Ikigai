@@ -1,4 +1,4 @@
-import Image from 'next/image';
+import Image from '@/components/Img';
 import { HOURS } from '@/content/hours';
 import { VISIT_PHOTO } from '@/content/photos';
 import { SITE } from '@/content/site';

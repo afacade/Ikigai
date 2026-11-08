@@ -1,4 +1,4 @@
-import Image from 'next/image';
+import Image from '@/components/Img';
 import DessertGallery from '@/components/desserts/DessertGallery';
 import { DELIVERY, MATCHA_BLOCKS, MATCHA_INTRO } from '@/content/matcha';
 import { DRINKS_PHOTO } from '@/content/photos';

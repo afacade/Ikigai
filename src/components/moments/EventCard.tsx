@@ -1,4 +1,4 @@
-import Image from 'next/image';
+import Image from '@/components/Img';
 import type { ArchiveEvent } from '@/content/types';
 
 /** The same archive event as a card, for the list view. */

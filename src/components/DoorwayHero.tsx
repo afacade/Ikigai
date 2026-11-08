@@ -1,6 +1,6 @@
 'use client';
 
-import Image from 'next/image';
+import Image from '@/components/Img';
 import { useRef } from 'react';
 import { DOORWAY } from '@/content/photos';
 import { clamp, easeInOutQuad, useScrollPass } from '@/lib/scroll';

@@ -1,4 +1,4 @@
-import Image from 'next/image';
+import Image from '@/components/Img';
 import Link from 'next/link';
 import { EVENTS } from '@/content/events';
 import { DRINKS_PHOTO, HOST_PHOTOS } from '@/content/photos';
