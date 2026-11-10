@@ -39,6 +39,11 @@
 }
 
 :root {
+  /* Off-white paper ground + a subtle monochrome grain, kept inline so there's
+     no extra asset to load. */
+  --color-paper-bg: #f4ede0;
+  --paper-grain: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.08'/%3E%3C/svg%3E");
+
   --hairline-cream: rgba(47, 74, 42, 0.22);
   --hairline-cream-soft: rgba(47, 74, 42, 0.18);
   --hairline-nav: rgba(47, 74, 42, 0.12);
@@ -67,7 +72,13 @@
   }
   body {
     margin: 0;
-    background: var(--color-beige);
+    /* Warm off-white paper: a faint fibrous grain over cream, so the page reads
+       like a sheet of paper rather than a flat white screen. The SVG grain tiles
+       and is fixed to the viewport so it never swims against the scroll. */
+    background-color: var(--color-paper-bg);
+    background-image: var(--paper-grain);
+    background-repeat: repeat;
+    background-attachment: fixed;
     color: var(--color-ink);
     font-family: var(--font-sans);
     -webkit-font-smoothing: antialiased;

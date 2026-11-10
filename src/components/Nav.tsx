@@ -11,6 +11,7 @@ import { clamp, easeInOutQuad, prefersReducedMotion, useScrollPass } from '@/lib
  * wordmark on the right.
  */
 const LINKS = [
+  { label: 'home', href: '/' },
   { label: 'our matcha', href: '/our-matcha' },
   { label: 'events', href: '/events' },
   { label: 'book us', href: '/book-us' },
