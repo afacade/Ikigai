@@ -56,6 +56,13 @@ export const clamp = (v: number, a: number, b: number) => Math.max(a, Math.min(b
 export const easeInOutQuad = (p: number) =>
   p < 0.5 ? 2 * p * p : 1 - Math.pow(-2 * p + 2, 2) / 2;
 
+/**
+ * easeOutCubic — the reveal's easing. Most of the distance is covered early
+ * and the last few pixels are slow, so a block settles into place instead of
+ * arriving at a constant rate.
+ */
+export const easeOutCubic = (p: number) => 1 - Math.pow(1 - p, 3);
+
 interface Options {
   /**
    * Run even when the visitor asked for reduced motion. For passes that set

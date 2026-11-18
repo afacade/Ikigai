@@ -60,6 +60,15 @@
   --shadow-folder: 0 8px 16px -8px rgba(0, 0, 0, 0.5);
   --shadow-nav: 0 1px 0 rgba(47, 74, 42, 0.12);
 
+  /* Elevation for the card-like things on a light ground — the teaser doors.
+     Two stops: a tight contact shadow that keeps the edge crisp, and a wide
+     soft one that does the lifting. Same brown as shadow-window-light, never
+     neutral black, or the warm grounds go grey underneath. */
+  --shadow-card: 0 2px 4px -2px rgba(42, 30, 22, 0.1), 0 12px 28px -14px rgba(42, 30, 22, 0.28);
+  --shadow-card-hover: 0 4px 10px -3px rgba(42, 30, 22, 0.14), 0 28px 52px -20px rgba(42, 30, 22, 0.4);
+
+  --ease-settle: cubic-bezier(0.2, 0.7, 0.3, 1);
+
   --section-y: clamp(80px, 10vw, 140px);
   --section-x: clamp(20px, 5vw, 72px);
   --section-x-narrow: clamp(20px, 4vw, 56px);
@@ -395,6 +404,22 @@
   .section-pad {
     padding: var(--section-y) var(--section-x);
   }
+
+  /* --------------------------------------------------------- elevation
+     The handoff's rule is that hairlines carry the structure and shadows are
+     for things that pretend to be objects. This is a deliberate widening of
+     that, and the only one: a teaser is a door you click, so it may sit above
+     the page. No section, photo or row gains a shadow. */
+  .card-lift {
+    box-shadow: var(--shadow-card);
+    transition:
+      box-shadow 0.5s var(--ease-settle),
+      transform 0.5s var(--ease-settle);
+  }
+  .group:hover .card-lift {
+    box-shadow: var(--shadow-card-hover);
+    transform: translateY(-6px);
+  }
 }
 
 /* --------------------------------------------------------------- motion
@@ -402,7 +427,10 @@
    With reduced motion the end state is all there is. */
 [data-reveal] {
   opacity: 0;
-  transform: translateY(36px);
+  /* Origin at the top edge so the scale never moves the top the pass
+     measures, and the block settles downward rather than from its middle. */
+  transform-origin: center top;
+  transform: translateY(36px) scale(0.985);
 }
 [data-speed] {
   will-change: transform;
@@ -411,6 +439,11 @@
 @media (prefers-reduced-motion: reduce) {
   [data-reveal] {
     opacity: 1;
+    transform: none;
+  }
+  .card-lift,
+  .group:hover .card-lift {
+    transition: none;
     transform: none;
   }
   [data-speed] {

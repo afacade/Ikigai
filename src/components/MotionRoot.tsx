@@ -1,6 +1,6 @@
 'use client';
 
-import { clamp, useScrollPass } from '@/lib/scroll';
+import { clamp, easeOutCubic, useScrollPass } from '@/lib/scroll';
 
 /**
  * The two page-wide scroll effects: scrubbed reveals and parallax.
@@ -23,12 +23,19 @@ export default function MotionRoot() {
 
     document.querySelectorAll<HTMLElement>('[data-reveal]').forEach((el) => {
       // Measure in untransformed space by subtracting the offset we last wrote.
+      // Scale needs no such correction: the start state pins transform-origin
+      // to the top edge, so scaling never moves the top we measure.
       const top = el.getBoundingClientRect().top - (offsets.get(el) ?? 0);
-      const p = clamp((vh - top) / (vh * 0.28), 0, 1);
-      const ty = (1 - p) * 36;
+      // data-reveal carries an optional stagger step, so siblings in a grid or
+      // a list cascade instead of arriving together. Bare data-reveal is 0.
+      const step = parseFloat(el.dataset.reveal || '0') || 0;
+      const p = clamp((vh - top - step * vh * 0.045) / (vh * 0.28), 0, 1);
+      const e = easeOutCubic(p);
+      const ty = (1 - e) * 36;
       offsets.set(el, ty);
-      el.style.opacity = String(p);
-      el.style.transform = `translateY(${ty.toFixed(1)}px)`;
+      el.style.opacity = String(e);
+      // 0.985 → 1 exactly at e = 1, so text lands on whole pixels.
+      el.style.transform = `translateY(${ty.toFixed(1)}px) scale(${(0.985 + 0.015 * e).toFixed(4)})`;
     });
   });
 
