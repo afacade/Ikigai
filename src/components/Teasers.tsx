@@ -33,9 +33,9 @@ export default function Teasers() {
   return (
     <section className="bg-cream px-[var(--section-x)] pb-[clamp(80px,10vw,140px)] text-matcha-deep">
       <div className="mx-auto grid max-w-[1400px] grid-cols-[repeat(auto-fit,minmax(min(100%,280px),1fr))] gap-x-8 gap-y-14">
-        {TEASERS.map((t) => (
-          <Link key={t.href} href={t.href} data-reveal className="group no-underline">
-            <div className="relative aspect-[4/5] overflow-hidden">
+        {TEASERS.map((t, i) => (
+          <Link key={t.href} href={t.href} data-reveal={String(i)} className="group no-underline">
+            <div className="card-lift relative aspect-[4/5] overflow-hidden">
               <Image
                 src={t.photo.src}
                 alt={t.photo.alt}

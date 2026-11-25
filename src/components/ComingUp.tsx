@@ -18,9 +18,9 @@ export default function ComingUp() {
           coming <span className="italic text-matcha">up</span>
         </h2>
 
-        {UPCOMING.map((u) => (
+        {UPCOMING.map((u, i) => (
           <div
-            data-reveal
+            data-reveal={String(i + 1)}
             key={`${u.day}-${u.title}`}
             className="grid grid-cols-1 items-start gap-x-7 gap-y-4 border-t-[1.5px] border-ink py-[26px] sm:grid-cols-[minmax(80px,130px)_minmax(0,1fr)_auto] sm:items-center"
           >
