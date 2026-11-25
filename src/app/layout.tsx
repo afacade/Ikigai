@@ -53,11 +53,11 @@ export const metadata: Metadata = {
     template: '%s · ikigai tea bar',
   },
   description:
-    'we are a matcha tea bar at kronenstraße 66 in berlin mitte. there is run club on sundays and chess on thursdays, and a seat for you on any of the days in between.',
+    'we are a matcha tea bar at kronenstraße 66 in berlin mitte, and there is a seat for you on any day of the week.',
   openGraph: {
     title: 'ikigai tea bar · berlin mitte',
     description:
-      'we whisk ceremonial matcha to order, and run clubs, chess nights and workshops fill the rest of the week.',
+      "there is plenty of sweet on the counter and a delicious drink in your glass. the workshops are fun and the conversations run long. come by, we'd love to have you.",
     locale: 'en_GB',
     type: 'website',
   },
