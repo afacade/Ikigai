@@ -30,7 +30,7 @@
   --color-on-dark-300: #e3c9a8;
   --color-on-dark-400: #d8cbb6;
   --color-modal-text: #3b2a1f;
-  --color-field-placeholder: #8a7360;
+  --color-field-placeholder: #73604c;
 
   --font-serif: var(--font-instrument-serif), Georgia, serif;
   --font-sans: var(--font-archivo), system-ui, sans-serif;
@@ -147,6 +147,7 @@
   .t-h2-visit {
     font-size: clamp(46px, 5.2vw, 80px);
     line-height: 1;
+    text-wrap: balance;
   }
   .t-h2-upcoming {
     font-size: clamp(48px, 6vw, 88px);
@@ -156,6 +157,7 @@
     font-family: var(--font-serif);
     font-size: clamp(34px, 4.4vw, 66px);
     line-height: 1.08;
+    text-wrap: balance;
   }
   .t-wordmark-xl {
     font-family: var(--font-serif);
@@ -174,9 +176,11 @@
     letter-spacing: 0;
     text-transform: lowercase;
   }
-  /* "tea bar" under the wordmark — the eyebrow scale, optically centred. */
+  /* "tea bar" under the wordmark — the eyebrow scale, optically centred.
+     10px is the floor for this tracked micro-label; below it the letters start
+     to disappear against the warm ground. */
   .t-wordmark-sub {
-    font-size: 9px;
+    font-size: 10px;
     letter-spacing: 0.34em;
     text-transform: lowercase;
     line-height: 1;
@@ -230,10 +234,12 @@
   .t-body-visit {
     font-size: 17px;
     line-height: 1.65;
+    text-wrap: pretty;
   }
   .t-body-sm {
     font-size: 15px;
     line-height: 1.55;
+    text-wrap: pretty;
   }
   .t-caption {
     font-size: 14px;
@@ -436,7 +442,65 @@
   will-change: transform;
 }
 
+/* ----------------------------------------------------- newsletter field
+   An underline field on cream: a 1.5px resting baseline (Tailwind) so it reads
+   as an input, and a focus-within state that wipes a 2px matcha line in along
+   the baseline — the visible focus indicator for pointer and keyboard alike,
+   since the input itself carries no outline. The line is a pseudo-element so it
+   is never reset by Tailwind's box-shadow/ring custom-property composite. */
+.newsletter-field {
+  position: relative;
+  transition: background-color 0.2s;
+}
+.newsletter-field::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -1.5px;
+  height: 2px;
+  background: var(--color-matcha-deep);
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform 0.25s var(--ease-settle);
+}
+.newsletter-field:focus-within {
+  background-color: rgba(47, 74, 42, 0.05);
+}
+.newsletter-field:focus-within::after {
+  transform: scaleX(1);
+}
 @media (prefers-reduced-motion: reduce) {
+  .newsletter-field,
+  .newsletter-field::after {
+    transition: none;
+  }
+}
+
+/* --------------------------------------------------------- hero entrance
+   The shop window sets itself once on load: the lettering settles onto the
+   glass, then the hanging sign descends. The settled, visible frame is the
+   default — these keyframes only play forward from it, so a failed script or
+   stylesheet, or a reduced-motion request, simply shows the window already set.
+   Transform + opacity only, one pass, no loop. */
+@keyframes hero-settle {
+  from {
+    opacity: 0;
+    transform: translateY(14px) scale(0.985);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+.hero-settle {
+  animation: hero-settle 0.9s cubic-bezier(0.16, 1, 0.3, 1) backwards;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-settle {
+    animation: none;
+  }
   [data-reveal] {
     opacity: 1;
     transform: none;

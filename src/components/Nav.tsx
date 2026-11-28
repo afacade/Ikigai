@@ -6,9 +6,9 @@ import { useEffect, useRef, useState } from 'react';
 import { clamp, easeInOutQuad, prefersReducedMotion, useScrollPass } from '@/lib/scroll';
 
 /**
- * The four categories the client asked for, in the order they gave them:
- * our matcha → events → book us → faqs. They sit together on the left, with the
- * wordmark on the right.
+ * The nav links: home, then the four categories the client asked for, in the
+ * order they gave them — our matcha → events → book us → faqs. They sit together
+ * on the left, with the wordmark on the right.
  */
 const LINKS = [
   { label: 'home', href: '/' },
